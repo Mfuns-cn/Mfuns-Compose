@@ -1,0 +1,67 @@
+buildscript {
+    ext.kotlin_version = "1.6.0"
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.2.0"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+plugins {
+    id "groovy"
+    id "com.diffplug.spotless" version "6.1.0"
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+spotless {
+    ratchetFrom 'master'
+
+    format 'misc', {
+        target '**/*.md', '**/*.editorconfig', '**/*.gitignore'
+
+        trimTrailingWhitespace()
+        indentWithSpaces()
+        endWithNewline()
+    }
+
+    groovy {
+        importOrder()
+        excludeJava()
+        greclipse()
+        trimTrailingWhitespace()
+        indentWithSpaces()
+        endWithNewline()
+    }
+
+    groovyGradle {
+        greclipse()
+        trimTrailingWhitespace()
+        indentWithSpaces()
+        endWithNewline()
+    }
+
+    kotlin {
+        ktlint()
+        trimTrailingWhitespace()
+        indentWithSpaces()
+        endWithNewline()
+    }
+
+    format 'xml', {
+        target '**/*.xml' // must specify target
+        // eclipseWtp('xml')
+        prettier(['@prettier/plugin-xml': '*']).config(['tabWidth': 4, 'bracketSameLine': true])
+        trimTrailingWhitespace()
+        indentWithSpaces()
+        endWithNewline()
+    }
+}
