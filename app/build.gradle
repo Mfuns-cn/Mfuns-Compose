@@ -9,8 +9,9 @@ android {
 
     defaultConfig {
         applicationId "cn.mfuns.webapp"
-        minSdkVersion 21
-        targetSdkVersion 21
+        minSdkVersion 25
+        //noinspection ExpiredTargetSdkVersion
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
 
