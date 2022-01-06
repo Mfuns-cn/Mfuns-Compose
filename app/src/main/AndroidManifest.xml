@@ -14,8 +14,7 @@
         <activity
             android:name=".SplashActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Mfuns.Splash"
-            android:launchMode="singleTask">
+            android:theme="@style/Theme.Mfuns.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
