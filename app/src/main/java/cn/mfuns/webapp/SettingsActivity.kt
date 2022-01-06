@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Process
 import android.webkit.CookieManager
+import android.webkit.WebStorage
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
@@ -36,7 +37,7 @@ class SettingsActivity : AppCompatActivity() {
             val preferenceClearCookies = findPreference<Preference>("clear_cookies")
             preferenceClearCookies?.summaryProvider =
                 Preference.SummaryProvider<Preference> {
-                    "${listOf(CookieManager.getInstance()).size} 个 Cookie"
+                    "${listOf(CookieManager.getInstance()).size} 个 Cookie，${listOf(WebStorage.getInstance()).size} 项 WebStorage"
                 }
             preferenceClearCookies?.onPreferenceClickListener =
                 Preference.OnPreferenceClickListener {
@@ -48,6 +49,7 @@ class SettingsActivity : AppCompatActivity() {
                         dialog.setPositiveButton(R.string.positive,
                             DialogInterface.OnClickListener { _, _ ->
                                 CookieManager.getInstance().removeAllCookies(null)
+                                WebStorage.getInstance().deleteAllData()
                                 Process.killProcess(Process.myPid())
                             })
                         dialog.setNegativeButton(R.string.negative, null)
