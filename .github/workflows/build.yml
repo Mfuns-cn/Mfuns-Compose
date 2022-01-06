@@ -33,5 +33,5 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        name: Signed app bundle
+        name: mfuns-webapp-${{ github.sha }}
         path: ${{steps.sign_app.outputs.signedReleaseFile}}
