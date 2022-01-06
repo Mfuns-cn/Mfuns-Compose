@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.KeyEvent
 import android.view.View
+import android.webkit.CookieManager
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -39,12 +40,15 @@ class WebViewContainer {
             settings.savePassword = true
 
             // Cache
-            settings.setAppCacheEnabled(true)
             settings.domStorageEnabled = true
-            settings.databaseEnabled = true
+
+            // Cookie
+            val cookieManager = CookieManager.getInstance()
+            cookieManager.setAcceptCookie(true)
+            cookieManager.setAcceptThirdPartyCookies(webView, true)
 
             // Handle back
-            webView!!.setOnKeyListener(object : View.OnKeyListener{
+            webView!!.setOnKeyListener(object : View.OnKeyListener {
                 override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
                     if (keyCode == KeyEvent.KEYCODE_BACK && webView!!.canGoBack()) {
                         webView!!.goBack()
