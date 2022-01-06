@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
             WebViewContainer.webView!!.loadDataWithBaseURL(null, "", "text/html", "utf-8", null)
             WebViewContainer.webView!!.clearHistory()
             (WebViewContainer.webView!!.parent as ViewGroup).removeView(WebViewContainer.webView)
-            // WebViewContainer.webView!!.destroy()
             WebViewContainer.webView = null
         }
         super.onDestroy()
