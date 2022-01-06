@@ -1,0 +1,38 @@
+name: Android CI
+
+on:
+  [ push, pull_request ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+        cache: gradle
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    - name: Build with Gradle
+      run: ./gradlew build
+
+    - uses: r0adkll/sign-android-release@v1
+      name: Sign app APK
+      id: sign_app
+      with:
+        releaseDirectory: app/build/outputs/apk/release
+        signingKeyBase64: ${{ fromJson(secrets.ANDROID_KEY).key }}
+        alias: ${{ fromJson(secrets.ANDROID_KEY).alias }}
+        keyStorePassword: ${{ fromJson(secrets.ANDROID_KEY).password }}
+        keyPassword: ${{ fromJson(secrets.ANDROID_KEY).password }}
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Signed app bundle
+        path: ${{steps.sign_app.outputs.signedReleaseFile}}
