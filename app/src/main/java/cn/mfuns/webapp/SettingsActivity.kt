@@ -30,7 +30,7 @@ class SettingsActivity : AppCompatActivity() {
             // Version
             findPreference<Preference>("version")?.summaryProvider =
                 Preference.SummaryProvider<Preference> {
-                    context!!.packageManager.getPackageInfo(context!!.packageName, 0).versionName
+                    requireContext().packageManager.getPackageInfo(requireContext().packageName, 0).versionName
                 }
 
             // Clear cookies
