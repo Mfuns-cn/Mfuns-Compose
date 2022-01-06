@@ -1,0 +1,9 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory app:title="@string/settings_about">
+        <Preference
+            app:key="version"
+            app:enabled="false"
+            app:title="@string/settings_version"
+        />
+    </PreferenceCategory>
+</PreferenceScreen>

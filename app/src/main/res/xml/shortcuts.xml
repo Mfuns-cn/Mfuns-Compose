@@ -1,0 +1,16 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="settings"
+        android:enabled="true"
+        android:icon="@drawable/ic_settings"
+        android:shortcutShortLabel="@string/settings_title"
+        android:shortcutLongLabel="@string/settings_title"
+        android:shortcutDisabledMessage="@string/settings_title">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="cn.mfuns.webapp"
+            android:targetClass="cn.mfuns.webapp.SettingsActivity"
+        />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+</shortcuts>
