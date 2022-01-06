@@ -4,6 +4,8 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -44,11 +46,13 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        WebViewContainer.initialize(this, object : WebViewContainerInitializedListener {
-            override fun initialized() {
-                startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-                finish()
-            }
-        })
+        Handler(Looper.getMainLooper()).postDelayed({
+            WebViewContainer.initialize(this@SplashActivity, object : WebViewContainerInitializedListener {
+                override fun initialized() {
+                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                    finish()
+                }
+            })
+        }, 100)
     }
 }
