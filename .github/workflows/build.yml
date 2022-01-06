@@ -19,7 +19,7 @@ jobs:
       uses: gradle/gradle-build-action@v2
 
     - name: Build with Gradle
-      run: ./gradlew build
+      run: gradle build
 
     - uses: r0adkll/sign-android-release@v1
       name: Sign app APK
