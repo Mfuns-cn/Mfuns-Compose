@@ -41,7 +41,7 @@ class SettingsActivity : AppCompatActivity() {
                 Preference.OnPreferenceClickListener {
                     (requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(
                         ClipData.newPlainText(
-                            context!!.getText(R.string.settings_version),
+                            requireContext().getText(R.string.settings_version),
                             versionString
                         )
                     )
