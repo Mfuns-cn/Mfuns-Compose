@@ -2,12 +2,15 @@ package cn.mfuns.webapp
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.DialogInterface
+import android.os.Process
 import android.view.KeyEvent
 import android.view.View
 import android.webkit.CookieManager
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.appcompat.app.AlertDialog
 import java.util.*
 
 class WebViewContainer {
@@ -24,7 +27,20 @@ class WebViewContainer {
 
             if (webView != null) notifyInitialized()
 
-            webView = WebView(context.applicationContext)
+            try {
+                webView = WebView(context.applicationContext)
+            } catch (e: Exception) {
+                val dialog = AlertDialog.Builder(context)
+                dialog.setTitle(R.string.webview_missing_title)
+                dialog.setMessage(R.string.webview_missing_message)
+                dialog.setPositiveButton(R.string.ok,
+                    DialogInterface.OnClickListener { _, _ ->
+                        Process.killProcess(Process.myPid())
+                    })
+                dialog.setCancelable(false)
+                dialog.show()
+                return
+            }
 
             // Configure
             val settings = webView!!.settings

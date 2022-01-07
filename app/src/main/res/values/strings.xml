@@ -2,8 +2,13 @@
     <string name="app_name">喵御宅</string>
 
     <!-- Common -->
+    <string name="ok">好</string>
     <string name="positive">是</string>
     <string name="negative">否</string>
+
+    <!-- No WebView -->
+    <string name="webview_missing_title">WebView 未找到</string>
+    <string name="webview_missing_message">设备上没有安装 WebView。请联系开发者获取帮助。</string>
 
     <!-- Settings -->
     <string name="settings_title">设置</string>
