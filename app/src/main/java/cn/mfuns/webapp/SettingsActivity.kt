@@ -6,13 +6,14 @@ import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Process
-import android.webkit.CookieManager
-import android.webkit.WebStorage
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.tencent.smtt.sdk.CookieManager
+import com.tencent.smtt.sdk.QbSdk
+import com.tencent.smtt.sdk.WebStorage
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -64,6 +65,23 @@ class SettingsActivity : AppCompatActivity() {
                         DialogInterface.OnClickListener { _, _ ->
                             CookieManager.getInstance().removeAllCookies(null)
                             WebStorage.getInstance().deleteAllData()
+                            Process.killProcess(Process.myPid())
+                        })
+                    dialog.setNegativeButton(R.string.negative, null)
+                    dialog.show()
+                    true
+                }
+
+            // Clear data
+            val preferenceClearData = findPreference<Preference>("clear_data")
+            preferenceClearData!!.onPreferenceClickListener =
+                Preference.OnPreferenceClickListener {
+                    val dialog = AlertDialog.Builder(requireContext())
+                    dialog.setTitle(R.string.settings_clear_data)
+                    dialog.setMessage(R.string.settings_clear_data_prompt)
+                    dialog.setPositiveButton(R.string.positive,
+                        DialogInterface.OnClickListener { _, _ ->
+                            QbSdk.clearAllWebViewCache(requireContext(), true)
                             Process.killProcess(Process.myPid())
                         })
                     dialog.setNegativeButton(R.string.negative, null)

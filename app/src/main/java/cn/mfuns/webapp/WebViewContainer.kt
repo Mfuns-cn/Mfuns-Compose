@@ -6,11 +6,9 @@ import android.content.DialogInterface
 import android.os.Process
 import android.view.KeyEvent
 import android.view.View
-import android.webkit.CookieManager
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.appcompat.app.AlertDialog
+import com.tencent.smtt.export.external.TbsCoreSettings
+import com.tencent.smtt.sdk.*
 import java.util.*
 
 class WebViewContainer {
@@ -26,6 +24,12 @@ class WebViewContainer {
             listeners += listener
 
             if (webView != null) notifyInitialized()
+
+            // Initialize dex2oat
+            val map = HashMap<String?, Any?>()
+            map[TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER] = true
+            map[TbsCoreSettings.TBS_SETTINGS_USE_DEXLOADER_SERVICE] = true
+            QbSdk.initTbsSettings(map)
 
             try {
                 webView = WebView(context.applicationContext)
@@ -54,6 +58,13 @@ class WebViewContainer {
             settings.defaultTextEncodingName = "utf-8"
             settings.saveFormData = true
             settings.savePassword = true
+            settings.userAgentString =
+                "Mfuns-WebApp/${
+                    context.packageManager.getPackageInfo(
+                        context.packageName,
+                        0
+                    ).versionName
+                } ${settings.userAgentString}"
 
             // Cache
             settings.domStorageEnabled = true

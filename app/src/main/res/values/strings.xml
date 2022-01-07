@@ -19,6 +19,9 @@
     <string name="settings_clear_cookies">清除登录状态</string>
     <string
         name="settings_clear_cookies_prompt">是否清除登录状态并退出？登录状态清除后，你需要重新登录。</string>
+    <string name="settings_clear_data">清除所有数据</string>
+    <string
+        name="settings_clear_data_prompt">是否清除所有应用数据？应用数据清除后，你需要重新登录。</string>
     <string name="settings_about">关于</string>
     <string name="settings_version">版本</string>
     <string name="settings_copied">已复制到剪切板</string>

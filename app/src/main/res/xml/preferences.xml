@@ -4,6 +4,10 @@
             app:key="clear_cookies"
             app:title="@string/settings_clear_cookies"
         />
+        <Preference
+            app:key="clear_data"
+            app:title="@string/settings_clear_data"
+        />
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/settings_about">
         <Preference app:key="version" app:title="@string/settings_version" />
