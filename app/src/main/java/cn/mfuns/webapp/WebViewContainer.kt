@@ -82,7 +82,7 @@ class WebViewContainer {
                 }
             }
 
-            webView!!.loadUrl("https://mfuns.cn")
+            webView!!.loadUrl(context.getText(R.string.app_url) as String)
         }
 
         private fun notifyInitialized() {
