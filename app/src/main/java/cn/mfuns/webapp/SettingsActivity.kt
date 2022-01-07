@@ -16,6 +16,7 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import com.ilharper.droidup.DroidUp
 import com.ilharper.droidup.droidUp
+import com.tencent.smtt.sdk.QbSdk
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -102,6 +103,12 @@ class SettingsActivity : AppCompatActivity() {
                         Toast.makeText(requireContext(), R.string.settings_group_join_failed, Toast.LENGTH_SHORT).show()
                     }
                     true
+                }
+
+            val preferenceTbsVersion = findPreference<Preference>("tbs_version")
+            preferenceTbsVersion!!.summaryProvider =
+                Preference.SummaryProvider<Preference> {
+                    QbSdk.getTbsVersion(requireContext()).toString()
                 }
         }
     }

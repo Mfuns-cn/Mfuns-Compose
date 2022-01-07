@@ -6,6 +6,11 @@
             app:key="settings_clear_data"
             app:title="@string/settings_clear_data"
         />
+        <Preference
+            app:key="tbs_version"
+            app:enabled="false"
+            app:title="@string/settings_webview_tbs_version"
+        />
     </PreferenceCategory>
     <PreferenceCategory
         app:key="settings_viewer"
