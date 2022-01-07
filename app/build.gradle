@@ -3,6 +3,35 @@ plugins {
     id 'kotlin-android'
 }
 
+def getVersionCode = { ->
+    try {
+        def out = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'rev-list', '--count', 'master'
+            standardOutput = out
+        }
+        return Integer.parseInt(out.toString().trim())
+    }
+    catch (ignored) {
+        return 1
+    }
+}
+
+def getVersionName = { ->
+    try {
+        def out = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'describe', '--tags', '--dirty'
+            standardOutput = out
+        }
+        def outStr = out.toString()
+        return outStr[1..outStr.length() - 1].trim()
+    }
+    catch (ignored) {
+        return '0.0.0'
+    }
+}
+
 android {
     compileSdkVersion 31
     buildToolsVersion "30.0.2"
@@ -12,8 +41,8 @@ android {
         minSdkVersion 25
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode getVersionCode()
+        versionName getVersionName()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
