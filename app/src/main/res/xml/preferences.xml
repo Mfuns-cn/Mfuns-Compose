@@ -6,9 +6,6 @@
         />
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/settings_about">
-        <Preference
-            app:key="version"
-            app:title="@string/settings_version"
-        />
+        <Preference app:key="version" app:title="@string/settings_version" />
     </PreferenceCategory>
 </PreferenceScreen>
