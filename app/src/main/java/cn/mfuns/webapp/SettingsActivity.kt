@@ -39,13 +39,13 @@ class SettingsActivity : AppCompatActivity() {
                 Preference.SummaryProvider<Preference> { versionString }
             preferenceVersion.onPreferenceClickListener =
                 Preference.OnPreferenceClickListener {
-                    (context!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(
+                    (requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(
                         ClipData.newPlainText(
                             context!!.getText(R.string.settings_version),
                             versionString
                         )
                     )
-                    Toast.makeText(context, R.string.settings_copied, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), R.string.settings_copied, Toast.LENGTH_SHORT).show()
                     true
                 }
 
@@ -57,21 +57,18 @@ class SettingsActivity : AppCompatActivity() {
                 }
             preferenceClearCookies.onPreferenceClickListener =
                 Preference.OnPreferenceClickListener {
-                    val dialog = context?.let { it1 -> AlertDialog.Builder(it1) }
-                    if (dialog == null) false
-                    else {
-                        dialog.setTitle(R.string.settings_clear_cookies)
-                        dialog.setMessage(R.string.settings_clear_cookies_prompt)
-                        dialog.setPositiveButton(R.string.positive,
-                            DialogInterface.OnClickListener { _, _ ->
-                                CookieManager.getInstance().removeAllCookies(null)
-                                WebStorage.getInstance().deleteAllData()
-                                Process.killProcess(Process.myPid())
-                            })
-                        dialog.setNegativeButton(R.string.negative, null)
-                        dialog.show()
-                        true
-                    }
+                    val dialog = AlertDialog.Builder(requireContext())
+                    dialog.setTitle(R.string.settings_clear_cookies)
+                    dialog.setMessage(R.string.settings_clear_cookies_prompt)
+                    dialog.setPositiveButton(R.string.positive,
+                        DialogInterface.OnClickListener { _, _ ->
+                            CookieManager.getInstance().removeAllCookies(null)
+                            WebStorage.getInstance().deleteAllData()
+                            Process.killProcess(Process.myPid())
+                        })
+                    dialog.setNegativeButton(R.string.negative, null)
+                    dialog.show()
+                    true
                 }
         }
     }
