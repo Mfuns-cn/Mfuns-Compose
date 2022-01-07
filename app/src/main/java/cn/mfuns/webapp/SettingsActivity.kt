@@ -1,10 +1,14 @@
 package cn.mfuns.webapp
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Process
 import android.webkit.CookieManager
 import android.webkit.WebStorage
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
@@ -28,19 +32,30 @@ class SettingsActivity : AppCompatActivity() {
             setPreferencesFromResource(R.xml.preferences, rootKey)
 
             // Version
-            findPreference<Preference>("version")?.summaryProvider =
-                Preference.SummaryProvider<Preference> {
-                    val version = requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
-                    "${version.versionName} (${version.versionCode})"
+            val version = requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
+            val versionString = "${version.versionName} (${version.versionCode})"
+            val preferenceVersion = findPreference<Preference>("version")
+            preferenceVersion!!.summaryProvider =
+                Preference.SummaryProvider<Preference> { versionString }
+            preferenceVersion.onPreferenceClickListener =
+                Preference.OnPreferenceClickListener {
+                    (context!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(
+                        ClipData.newPlainText(
+                            context!!.getText(R.string.settings_version),
+                            versionString
+                        )
+                    )
+                    Toast.makeText(context, R.string.settings_copied, Toast.LENGTH_SHORT).show()
+                    true
                 }
 
             // Clear cookies
             val preferenceClearCookies = findPreference<Preference>("clear_cookies")
-            preferenceClearCookies?.summaryProvider =
+            preferenceClearCookies!!.summaryProvider =
                 Preference.SummaryProvider<Preference> {
                     "${listOf(CookieManager.getInstance()).size} 个 Cookie，${listOf(WebStorage.getInstance()).size} 项 WebStorage"
                 }
-            preferenceClearCookies?.onPreferenceClickListener =
+            preferenceClearCookies.onPreferenceClickListener =
                 Preference.OnPreferenceClickListener {
                     val dialog = context?.let { it1 -> AlertDialog.Builder(it1) }
                     if (dialog == null) false

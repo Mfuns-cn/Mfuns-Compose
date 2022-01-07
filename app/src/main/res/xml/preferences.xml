@@ -1,10 +1,6 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory app:title="@string/settings_webview">
         <Preference
-            app:key="clear_cache"
-            app:title="@string/settings_clear_cache"
-        />
-        <Preference
             app:key="clear_cookies"
             app:title="@string/settings_clear_cookies"
         />
@@ -12,7 +8,6 @@
     <PreferenceCategory app:title="@string/settings_about">
         <Preference
             app:key="version"
-            app:enabled="false"
             app:title="@string/settings_version"
         />
     </PreferenceCategory>
