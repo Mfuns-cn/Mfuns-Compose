@@ -11,6 +11,9 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
+import cn.mfuns.webapp.webview.WebViewContainer
+import cn.mfuns.webapp.webview.WebViewInitializedListener
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +50,12 @@ class SplashActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         Handler(Looper.getMainLooper()).postDelayed({
-            WebViewContainer.initialize(this@SplashActivity, object : WebViewContainerInitializedListener {
+            val useTbs = PreferenceManager.getDefaultSharedPreferences(this).getString(
+                "settings_webview_core",
+                resources.getStringArray(R.array.settings_webview_core_list)[0]
+            ) == resources.getStringArray(R.array.settings_webview_core_list)[1]
+            WebViewContainer.defaultContainer = WebViewContainer(useTbs)
+            WebViewContainer.defaultContainer.initialize(this@SplashActivity, object : WebViewInitializedListener {
                 override fun initialized() {
                     startActivity(Intent(this@SplashActivity, MainActivity::class.java))
                     finish()
