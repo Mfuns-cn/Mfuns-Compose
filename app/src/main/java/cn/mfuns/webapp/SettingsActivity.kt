@@ -1,14 +1,12 @@
 package cn.mfuns.webapp
 
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
-import android.content.DialogInterface
+import android.content.*
 import android.os.Bundle
 import android.os.Process
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.tencent.smtt.sdk.CookieManager
@@ -49,6 +47,19 @@ class SettingsActivity : AppCompatActivity() {
                     Toast.makeText(requireContext(), R.string.settings_copied, Toast.LENGTH_SHORT).show()
                     true
                 }
+
+            // WebView core
+            val preferenceWebViewCore = findPreference<ListPreference>("webview_core")
+            val preferenceWebViewCoreListener = SharedPreferences.OnSharedPreferenceChangeListener { _, _ ->
+                val dialog = AlertDialog.Builder(requireContext())
+                dialog.setTitle(R.string.settings_webview_core_change)
+                dialog.setMessage(R.string.settings_webview_core_change_prompt)
+                dialog.setPositiveButton(R.string.ok,
+                    DialogInterface.OnClickListener { _, _ ->
+                        Process.killProcess(Process.myPid())
+                    })
+                dialog.show()
+            }
 
             // Clear cookies
             val preferenceClearCookies = findPreference<Preference>("clear_cookies")

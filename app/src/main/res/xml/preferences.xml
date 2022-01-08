@@ -1,5 +1,12 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory app:title="@string/settings_webview">
+        <ListPreference
+            app:key="webview_core"
+            app:title="@string/settings_webview_core"
+            app:defaultValue="@string/settings_webview_core_system"
+            app:entries="@array/settings_webview_core_list"
+            app:entryValues="@array/settings_webview_core_list"
+        />
         <Preference
             app:key="clear_cookies"
             app:title="@string/settings_clear_cookies"

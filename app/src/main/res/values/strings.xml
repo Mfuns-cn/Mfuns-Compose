@@ -10,11 +10,21 @@
     <!-- No WebView -->
     <string name="webview_missing_title">WebView 未找到</string>
     <string
-        name="webview_missing_message">设备上没有安装 WebView。请联系开发者获取帮助。</string>
+        name="webview_missing_message">设备上没有安装 WebView。请在应用设置页尝试切换 WebView 核心。</string>
 
     <!-- Settings -->
     <string name="settings_title">设置</string>
     <string name="settings_webview">WebView</string>
+    <string name="settings_webview_core">WebView 核心</string>
+    <string-array name="settings_webview_core_list">
+        <item>Android System WebView</item>
+        <item>TBS（QQ 浏览器）</item>
+    </string-array>
+    <string name="settings_webview_core_system">Android System WebView</string>
+    <string name="settings_webview_core_tbs">TBS（QQ 浏览器）</string>
+    <string name="settings_webview_core_change">切换 WebView 核心</string>
+    <string
+        name="settings_webview_core_change_prompt">WebView 核心已切换，重新启动应用即可生效。</string>
     <string name="settings_clear_cache">清除缓存</string>
     <string name="settings_clear_cookies">清除登录状态</string>
     <string
