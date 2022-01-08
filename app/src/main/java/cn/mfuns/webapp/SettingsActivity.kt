@@ -33,7 +33,7 @@ class SettingsActivity : AppCompatActivity() {
             // Version
             val version = requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
             val versionString = "${version.versionName} (${version.versionCode})"
-            val preferenceVersion = findPreference<Preference>("version")
+            val preferenceVersion = findPreference<Preference>("settings_version")
             preferenceVersion!!.summaryProvider =
                 Preference.SummaryProvider<Preference> { versionString }
             preferenceVersion.onPreferenceClickListener =
@@ -49,7 +49,7 @@ class SettingsActivity : AppCompatActivity() {
                 }
 
             // WebView core
-            val preferenceWebViewCore = findPreference<ListPreference>("webview_core")
+            val preferenceWebViewCore = findPreference<ListPreference>("settings_webview_core")
             val preferenceWebViewCoreListener = SharedPreferences.OnSharedPreferenceChangeListener { _, _ ->
                 val dialog = AlertDialog.Builder(requireContext())
                 dialog.setTitle(R.string.settings_webview_core_change)
@@ -62,7 +62,7 @@ class SettingsActivity : AppCompatActivity() {
             }
 
             // Clear cookies
-            val preferenceClearCookies = findPreference<Preference>("clear_cookies")
+            val preferenceClearCookies = findPreference<Preference>("settings_clear_cookies")
             preferenceClearCookies!!.summaryProvider =
                 Preference.SummaryProvider<Preference> {
                     "${listOf(CookieManager.getInstance()).size} 个 Cookie，${listOf(WebStorage.getInstance()).size} 项 WebStorage"
@@ -84,7 +84,7 @@ class SettingsActivity : AppCompatActivity() {
                 }
 
             // Clear data
-            val preferenceClearData = findPreference<Preference>("clear_data")
+            val preferenceClearData = findPreference<Preference>("settings_clear_data")
             preferenceClearData!!.onPreferenceClickListener =
                 Preference.OnPreferenceClickListener {
                     val dialog = AlertDialog.Builder(requireContext())
@@ -100,7 +100,7 @@ class SettingsActivity : AppCompatActivity() {
                     true
                 }
 
-            val preferenceTbsVersion = findPreference<Preference>("tbs_version")
+            val preferenceTbsVersion = findPreference<Preference>("settings_webview_tbs_version")
             preferenceTbsVersion!!.summaryProvider =
                 Preference.SummaryProvider<Preference> {
                     QbSdk.getTbsVersion(requireContext()).toString()

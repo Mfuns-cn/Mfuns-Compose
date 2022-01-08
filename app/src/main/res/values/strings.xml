@@ -17,8 +17,8 @@
     <string name="settings_webview">WebView</string>
     <string name="settings_webview_core">WebView 核心</string>
     <string-array name="settings_webview_core_list">
-        <item>Android System WebView</item>
-        <item>TBS（QQ 浏览器）</item>
+        <item>@string/settings_webview_core_system</item>
+        <item>@string/settings_webview_core_tbs</item>
     </string-array>
     <string name="settings_webview_core_system">Android System WebView</string>
     <string name="settings_webview_core_tbs">TBS（QQ 浏览器）</string>
