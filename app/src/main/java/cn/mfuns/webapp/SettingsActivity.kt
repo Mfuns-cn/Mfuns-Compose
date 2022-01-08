@@ -92,9 +92,7 @@ class SettingsActivity : AppCompatActivity() {
             val preferenceTbsVersion = findPreference<Preference>("tbs_version")
             preferenceTbsVersion!!.summaryProvider =
                 Preference.SummaryProvider<Preference> {
-                    (if (WebViewContainer.webView?.x5WebViewExtension == null) "未加载 - " else "") + QbSdk.getTbsVersion(
-                        requireContext()
-                    ).toString()
+                    QbSdk.getTbsVersion(requireContext()).toString()
                 }
         }
     }
