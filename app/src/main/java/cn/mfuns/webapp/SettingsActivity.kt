@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceManager
 import com.tencent.smtt.sdk.CookieManager
 import com.tencent.smtt.sdk.QbSdk
 import com.tencent.smtt.sdk.WebStorage
@@ -24,6 +25,31 @@ class SettingsActivity : AppCompatActivity() {
                 .replace(R.id.settings, SettingsFragment())
                 .commit()
         }
+    }
+
+    private val preferenceWebViewCoreListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+        if (key != "settings_webview_core") return@OnSharedPreferenceChangeListener
+        val dialog = AlertDialog.Builder(this)
+        dialog.setTitle(R.string.settings_webview_core_change)
+        dialog.setMessage(R.string.settings_webview_core_change_prompt)
+        dialog.setPositiveButton(R.string.ok,
+            DialogInterface.OnClickListener { _, _ ->
+                Process.killProcess(Process.myPid())
+            })
+        dialog.setCancelable(false)
+        dialog.show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        PreferenceManager.getDefaultSharedPreferences(this)
+            .registerOnSharedPreferenceChangeListener(preferenceWebViewCoreListener)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        PreferenceManager.getDefaultSharedPreferences(this)
+            .unregisterOnSharedPreferenceChangeListener(preferenceWebViewCoreListener)
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
@@ -50,16 +76,13 @@ class SettingsActivity : AppCompatActivity() {
 
             // WebView core
             val preferenceWebViewCore = findPreference<ListPreference>("settings_webview_core")
-            val preferenceWebViewCoreListener = SharedPreferences.OnSharedPreferenceChangeListener { _, _ ->
-                val dialog = AlertDialog.Builder(requireContext())
-                dialog.setTitle(R.string.settings_webview_core_change)
-                dialog.setMessage(R.string.settings_webview_core_change_prompt)
-                dialog.setPositiveButton(R.string.ok,
-                    DialogInterface.OnClickListener { _, _ ->
-                        Process.killProcess(Process.myPid())
-                    })
-                dialog.show()
-            }
+            preferenceWebViewCore!!.summaryProvider =
+                Preference.SummaryProvider<ListPreference> {
+                    PreferenceManager.getDefaultSharedPreferences(requireContext()).getString(
+                        "settings_webview_core",
+                        resources.getStringArray(R.array.settings_webview_core_list)[0]
+                    )
+                }
 
             // Clear cookies
             val preferenceClearCookies = findPreference<Preference>("settings_clear_cookies")
