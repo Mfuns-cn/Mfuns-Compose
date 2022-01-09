@@ -75,7 +75,11 @@ internal class TbsWebView : MfunsWebView() {
         // Listen onPageFinished()
         webView!!.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
-                webView!!.webViewClient = WebViewClient()
+                webView!!.webViewClient = object : WebViewClient() {
+                    override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+                        return MfunsWebViewClient.shouldOverrideUrlLoading(context.applicationContext, url)
+                    }
+                }
                 notifyInitialized()
             }
         }

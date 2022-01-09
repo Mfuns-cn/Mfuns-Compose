@@ -55,6 +55,17 @@
             android:name="org.apache.http.legacy"
             android:required="false"
         />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.mfuns.webapp.viewerprovider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths"
+            />
+        </provider>
     </application>
 
 </manifest>
