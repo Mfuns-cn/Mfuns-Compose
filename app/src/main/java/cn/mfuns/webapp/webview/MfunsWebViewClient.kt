@@ -12,15 +12,6 @@ import java.net.URL
 
 class MfunsWebViewClient {
     companion object {
-        private val imageExtList = hashMapOf(
-            ".bmp" to "image/x-ms-bmp",
-            ".jpg" to "image/jpeg",
-            ".jpeg" to "image/jpeg",
-            ".gif" to "image/gif",
-            ".png" to "image/png",
-            ".webp" to "image/webp"
-        )
-
         private var queue: RequestQueue? = null
 
         fun shouldOverrideUrlLoading(context: Context, url: String): Boolean {
@@ -29,8 +20,6 @@ class MfunsWebViewClient {
             path = url.split(path)[0] + path
             if (path.isNullOrEmpty()) return false
             val filename = path.split('/').last()
-            val ext = imageExtList.keys.singleOrNull { x -> filename.endsWith(x) } ?: return false
-            val mime = imageExtList[ext]
 
             // Notify download started
             Toast.makeText(context, R.string.viewer_downloading, Toast.LENGTH_SHORT).show()
@@ -54,7 +43,7 @@ class MfunsWebViewClient {
                         context.startActivity(intent)
                     }
                 }
-            }, { _ -> Toast.makeText(context, R.string.viewer_download_failed, Toast.LENGTH_SHORT).show() })
+            }, { Toast.makeText(context, R.string.viewer_download_failed, Toast.LENGTH_SHORT).show() })
 
             // Enqueue request
             queue!!.add(request)
