@@ -43,6 +43,10 @@
             android:theme="@style/Theme.AppCompat.Light"
             android:launchMode="singleTask"
         />
+        <activity
+            android:name=".PhotoViewActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+        />
 
         <!-- Services -->
         <service

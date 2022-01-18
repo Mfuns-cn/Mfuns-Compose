@@ -1,4 +1,4 @@
-package cn.mfuns.webapp.webview
+package cn.mfuns.webapp.util
 
 import com.android.volley.NetworkResponse
 import com.android.volley.Request
