@@ -5,6 +5,7 @@
     </style>
     <style name="Theme.Mfuns.Main" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:statusBarColor">#777FFB</item>
+        <item name="android:navigationBarColor">#FFFFFF</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
     <style name="Theme.Mfuns.Fullscreen" parent="Theme.AppCompat.Light">
