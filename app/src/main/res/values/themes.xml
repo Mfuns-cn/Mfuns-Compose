@@ -7,4 +7,12 @@
         <item name="android:statusBarColor">#777FFB</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
+    <style name="Theme.Mfuns.Fullscreen" parent="Theme.AppCompat.Light">
+        <item
+            name="android:actionBarStyle">@style/Widget.Theme.Mfuns.ActionBar.Fullscreen</item>
+        <item
+            name="buttonBarStyle">@style/Widget.Theme.Mfuns.ButtonBar.Fullscreen</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
 </resources>
