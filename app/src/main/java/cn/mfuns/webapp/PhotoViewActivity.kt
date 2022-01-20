@@ -46,6 +46,7 @@ class PhotoViewActivity : AppCompatActivity() {
                     file.writeBytes(response)
                     val uri = FileProvider.getUriForFile(this, "com.mfuns.webapp.viewerprovider", file)
                     binding.photoView.setImageURI(uri)
+                    binding.loadingBar.isIndeterminate = false
                 }
             }, {
                 Toast.makeText(this, R.string.viewer_download_failed, Toast.LENGTH_SHORT).show()
