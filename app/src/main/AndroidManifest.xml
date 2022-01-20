@@ -45,7 +45,7 @@
         />
         <activity
             android:name=".PhotoViewActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/Theme.Mfuns.Fullscreen"
         />
 
         <!-- Services -->
