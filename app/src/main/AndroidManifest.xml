@@ -62,7 +62,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.mfuns.webapp.viewerprovider"
+            android:authorities="${applicationId}.viewerprovider"
             android:grantUriPermissions="true"
             android:exported="false">
             <meta-data
