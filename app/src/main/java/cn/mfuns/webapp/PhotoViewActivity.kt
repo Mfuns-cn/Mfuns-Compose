@@ -1,6 +1,7 @@
 package cn.mfuns.webapp
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
@@ -19,6 +20,14 @@ class PhotoViewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Fullscreen
+        window.decorView.systemUiVisibility =
+            (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+        window.statusBarColor = 0x60000000
+        window.navigationBarColor = 0x60000000
 
         // Bind view
         binding = ActivityPhotoViewBinding.inflate(layoutInflater)
