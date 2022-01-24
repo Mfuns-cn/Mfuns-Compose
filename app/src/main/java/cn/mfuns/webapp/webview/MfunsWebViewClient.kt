@@ -10,6 +10,7 @@ class MfunsWebViewClient {
         fun shouldOverrideUrlLoading(context: Context, url: String): Boolean {
             // Parse URL
             var path = URL(url).path
+            if (path == "/") return false
             path = url.split(path)[0] + path
             if (path.isNullOrBlank()) return false
 
