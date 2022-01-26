@@ -27,6 +27,10 @@
         app:key="settings_about"
         app:title="@string/settings_about">
         <Preference
+            app:key="settings_update"
+            app:title="@string/settings_update"
+        />
+        <Preference
             app:key="settings_version"
             app:title="@string/settings_version"
         />

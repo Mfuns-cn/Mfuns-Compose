@@ -10,6 +10,8 @@ import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
+import com.ilharper.droidup.DroidUp
+import com.ilharper.droidup.droidUp
 import com.tencent.smtt.sdk.CookieManager
 import com.tencent.smtt.sdk.QbSdk
 import com.tencent.smtt.sdk.WebStorage
@@ -57,6 +59,15 @@ class SettingsActivity : AppCompatActivity() {
             setPreferencesFromResource(R.xml.preferences, rootKey)
 
             // Version
+            val preferenceUpdate = findPreference<Preference>("settings_update")
+            preferenceUpdate!!.onPreferenceClickListener =
+                Preference.OnPreferenceClickListener {
+                    DroidUp.default = (DroidUp.default ?: (droidUp {
+                        useSimpleChecker("https://app.mfuns.cn/releases")
+                    })).check(manual = true)
+                    true
+                }
+
             val version = requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
             val versionString = "${version.versionName} (${version.versionCode})"
             val preferenceVersion = findPreference<Preference>("settings_version")
