@@ -1,6 +1,7 @@
 package cn.mfuns.webapp
 
 import android.content.*
+import android.net.Uri
 import android.os.Bundle
 import android.os.Process
 import android.widget.Toast
@@ -138,6 +139,18 @@ class SettingsActivity : AppCompatActivity() {
             preferenceTbsVersion!!.summaryProvider =
                 Preference.SummaryProvider<Preference> {
                     QbSdk.getTbsVersion(requireContext()).toString()
+                }
+
+            // Join QQ group
+            val preferenceGroup = findPreference<Preference>("settings_group")
+            preferenceGroup!!.onPreferenceClickListener =
+                Preference.OnPreferenceClickListener {
+                    try {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.settings_group_uri))))
+                    } catch (e: Exception) {
+                        Toast.makeText(requireContext(), R.string.settings_group_join_failed, Toast.LENGTH_SHORT).show()
+                    }
+                    true
                 }
         }
     }

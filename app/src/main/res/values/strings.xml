@@ -39,6 +39,11 @@
     <string name="settings_webview_tbs_version">TBS 版本</string>
     <string name="settings_about">关于</string>
     <string name="settings_update">检查更新</string>
+    <string name="settings_group">反馈交流群</string>
+    <string name="settings_group_summary">825962575（点击加入）</string>
+    <string
+        name="settings_group_uri">mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26jump_from%3Dwebapi%26k%3DHyNvtmYwx9CG8Luu5H_yaW4hclAXkZmh</string>
+    <string name="settings_group_join_failed">拉起手Q失败</string>
     <string name="settings_version">版本</string>
     <string name="settings_copied">已复制到剪切板</string>
 </resources>
