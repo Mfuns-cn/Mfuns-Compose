@@ -68,7 +68,7 @@
         />
 
         <provider
-            android:name="androidx.core.content.FileProvider"
+            android:name=".util.ViewerProvider"
             android:authorities="${applicationId}.viewerprovider"
             android:grantUriPermissions="true"
             android:exported="false">
