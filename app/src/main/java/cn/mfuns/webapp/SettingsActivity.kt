@@ -3,7 +3,6 @@ package cn.mfuns.webapp
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
@@ -110,12 +109,11 @@ class SettingsActivity : AppCompatActivity() {
                     AlertDialog.Builder(requireContext()).apply {
                         setTitle(R.string.settings_clear_cookies)
                         setMessage(R.string.settings_clear_cookies_prompt)
-                        setPositiveButton(R.string.positive,
-                            DialogInterface.OnClickListener { _, _ ->
-                                CookieManager.getInstance().removeAllCookies(null)
-                                WebStorage.getInstance().deleteAllData()
-                                Process.killProcess(Process.myPid())
-                            })
+                        setPositiveButton(R.string.positive) { _, _ ->
+                            CookieManager.getInstance().removeAllCookies(null)
+                            WebStorage.getInstance().deleteAllData()
+                            Process.killProcess(Process.myPid())
+                        }
                         setNegativeButton(R.string.negative, null)
                         show()
                     }
@@ -129,11 +127,10 @@ class SettingsActivity : AppCompatActivity() {
                     AlertDialog.Builder(requireContext()).apply {
                         setTitle(R.string.settings_clear_data)
                         setMessage(R.string.settings_clear_data_prompt)
-                        setPositiveButton(R.string.positive,
-                            DialogInterface.OnClickListener { _, _ ->
-                                QbSdk.clearAllWebViewCache(requireContext(), true)
-                                Process.killProcess(Process.myPid())
-                            })
+                        setPositiveButton(R.string.positive) { _, _ ->
+                            QbSdk.clearAllWebViewCache(requireContext(), true)
+                            Process.killProcess(Process.myPid())
+                        }
                         setNegativeButton(R.string.negative, null)
                         show()
                     }
