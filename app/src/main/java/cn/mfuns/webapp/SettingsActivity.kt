@@ -1,6 +1,11 @@
 package cn.mfuns.webapp
 
-import android.content.*
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.os.Process
@@ -32,15 +37,13 @@ class SettingsActivity : AppCompatActivity() {
 
     private val preferenceWebViewCoreListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
         if (key != "settings_webview_core") return@OnSharedPreferenceChangeListener
-        val dialog = AlertDialog.Builder(this)
-        dialog.setTitle(R.string.settings_webview_core_change)
-        dialog.setMessage(R.string.settings_webview_core_change_prompt)
-        dialog.setPositiveButton(R.string.ok,
-            DialogInterface.OnClickListener { _, _ ->
-                Process.killProcess(Process.myPid())
-            })
-        dialog.setCancelable(false)
-        dialog.show()
+        AlertDialog.Builder(this).apply {
+            setTitle(R.string.settings_webview_core_change)
+            setMessage(R.string.settings_webview_core_change_prompt)
+            setPositiveButton(R.string.ok) { _, _ -> Process.killProcess(Process.myPid()) }
+            setCancelable(false)
+            show()
+        }
     }
 
     override fun onResume() {
@@ -104,17 +107,18 @@ class SettingsActivity : AppCompatActivity() {
                 }
             preferenceClearCookies.onPreferenceClickListener =
                 Preference.OnPreferenceClickListener {
-                    val dialog = AlertDialog.Builder(requireContext())
-                    dialog.setTitle(R.string.settings_clear_cookies)
-                    dialog.setMessage(R.string.settings_clear_cookies_prompt)
-                    dialog.setPositiveButton(R.string.positive,
-                        DialogInterface.OnClickListener { _, _ ->
-                            CookieManager.getInstance().removeAllCookies(null)
-                            WebStorage.getInstance().deleteAllData()
-                            Process.killProcess(Process.myPid())
-                        })
-                    dialog.setNegativeButton(R.string.negative, null)
-                    dialog.show()
+                    AlertDialog.Builder(requireContext()).apply {
+                        setTitle(R.string.settings_clear_cookies)
+                        setMessage(R.string.settings_clear_cookies_prompt)
+                        setPositiveButton(R.string.positive,
+                            DialogInterface.OnClickListener { _, _ ->
+                                CookieManager.getInstance().removeAllCookies(null)
+                                WebStorage.getInstance().deleteAllData()
+                                Process.killProcess(Process.myPid())
+                            })
+                        setNegativeButton(R.string.negative, null)
+                        show()
+                    }
                     true
                 }
 
@@ -122,16 +126,17 @@ class SettingsActivity : AppCompatActivity() {
             val preferenceClearData = findPreference<Preference>("settings_clear_data")
             preferenceClearData!!.onPreferenceClickListener =
                 Preference.OnPreferenceClickListener {
-                    val dialog = AlertDialog.Builder(requireContext())
-                    dialog.setTitle(R.string.settings_clear_data)
-                    dialog.setMessage(R.string.settings_clear_data_prompt)
-                    dialog.setPositiveButton(R.string.positive,
-                        DialogInterface.OnClickListener { _, _ ->
-                            QbSdk.clearAllWebViewCache(requireContext(), true)
-                            Process.killProcess(Process.myPid())
-                        })
-                    dialog.setNegativeButton(R.string.negative, null)
-                    dialog.show()
+                    AlertDialog.Builder(requireContext()).apply {
+                        setTitle(R.string.settings_clear_data)
+                        setMessage(R.string.settings_clear_data_prompt)
+                        setPositiveButton(R.string.positive,
+                            DialogInterface.OnClickListener { _, _ ->
+                                QbSdk.clearAllWebViewCache(requireContext(), true)
+                                Process.killProcess(Process.myPid())
+                            })
+                        setNegativeButton(R.string.negative, null)
+                        show()
+                    }
                     true
                 }
 

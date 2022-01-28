@@ -10,7 +10,11 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import cn.mfuns.webapp.R
 import com.tencent.smtt.export.external.TbsCoreSettings
-import com.tencent.smtt.sdk.*
+import com.tencent.smtt.sdk.CookieManager
+import com.tencent.smtt.sdk.QbSdk
+import com.tencent.smtt.sdk.WebSettings
+import com.tencent.smtt.sdk.WebView
+import com.tencent.smtt.sdk.WebViewClient
 
 internal class TbsWebView : MfunsWebView() {
     private var webView: WebView? = null
@@ -30,36 +34,39 @@ internal class TbsWebView : MfunsWebView() {
         try {
             webView = WebView(context.applicationContext)
         } catch (e: Exception) {
-            val dialog = AlertDialog.Builder(context)
-            dialog.setTitle(R.string.webview_missing_title)
-            dialog.setMessage(R.string.webview_missing_message)
-            dialog.setPositiveButton(
-                R.string.ok,
-                DialogInterface.OnClickListener { _, _ ->
-                    Process.killProcess(Process.myPid())
-                })
-            dialog.setCancelable(false)
-            dialog.show()
+            AlertDialog.Builder(context).apply {
+                setTitle(R.string.webview_missing_title)
+                setMessage(R.string.webview_missing_message)
+                setPositiveButton(
+                    R.string.ok,
+                    DialogInterface.OnClickListener { _, _ ->
+                        Process.killProcess(Process.myPid())
+                    })
+                setCancelable(false)
+                show()
+            }
             return
         }
 
         // Configure
-        val settings = webView!!.settings
-        settings.javaScriptEnabled = true
-        settings.setSupportZoom(false)
-        settings.cacheMode = WebSettings.LOAD_NO_CACHE
-        settings.userAgentString =
-            "Mfuns-WebApp/${
-                context.packageManager.getPackageInfo(
-                    context.packageName,
-                    0
-                ).versionName
-            } ${settings.userAgentString}"
+        webView!!.settings.apply {
+            javaScriptEnabled = true
+            setSupportZoom(false)
+            cacheMode = WebSettings.LOAD_NO_CACHE
+            userAgentString =
+                "Mfuns-WebApp/${
+                    context.packageManager.getPackageInfo(
+                        context.packageName,
+                        0
+                    ).versionName
+                } $userAgentString"
+        }
 
         // Cookie
-        val cookieManager = CookieManager.getInstance()
-        cookieManager.setAcceptCookie(true)
-        cookieManager.setAcceptThirdPartyCookies(webView, true)
+        CookieManager.getInstance().apply {
+            setAcceptCookie(true)
+            setAcceptThirdPartyCookies(webView, true)
+        }
 
         // Handle back
         webView!!.setOnKeyListener(object : View.OnKeyListener {
@@ -88,10 +95,10 @@ internal class TbsWebView : MfunsWebView() {
     }
 
     override fun destroy() {
-        webView?.let {
-            it.loadDataWithBaseURL(null, "", "text/html", "utf-8", null)
-            it.clearHistory()
-            (it.parent as ViewGroup).removeView(it)
+        webView?.apply {
+            loadDataWithBaseURL(null, "", "text/html", "utf-8", null)
+            clearHistory()
+            (parent as ViewGroup).removeView(this)
             webView = null
         }
     }
