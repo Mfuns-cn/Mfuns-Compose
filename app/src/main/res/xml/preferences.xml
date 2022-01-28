@@ -24,6 +24,17 @@
         />
     </PreferenceCategory>
     <PreferenceCategory
+        app:key="settings_viewer"
+        app:title="@string/settings_viewer">
+        <ListPreference
+            app:key="settings_viewer_default_action"
+            app:title="@string/settings_viewer_default_action"
+            app:defaultValue="@string/settings_viewer_action_open_internal"
+            app:entries="@array/settings_viewer_action_list"
+            app:entryValues="@array/settings_viewer_action_list"
+        />
+    </PreferenceCategory>
+    <PreferenceCategory
         app:key="settings_about"
         app:title="@string/settings_about">
         <Preference

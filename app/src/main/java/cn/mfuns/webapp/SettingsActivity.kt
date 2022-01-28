@@ -143,6 +143,16 @@ class SettingsActivity : AppCompatActivity() {
                     QbSdk.getTbsVersion(requireContext()).toString()
                 }
 
+            // Viewer
+            val preferenceViewer = findPreference<ListPreference>("settings_viewer_default_action")
+            preferenceViewer!!.summaryProvider =
+                Preference.SummaryProvider<ListPreference> {
+                    PreferenceManager.getDefaultSharedPreferences(requireContext()).getString(
+                        "settings_viewer_default_action",
+                        resources.getStringArray(R.array.settings_webview_core_list)[0]
+                    )
+                }
+
             // Join QQ group
             val preferenceGroup = findPreference<Preference>("settings_group")
             preferenceGroup!!.onPreferenceClickListener =
