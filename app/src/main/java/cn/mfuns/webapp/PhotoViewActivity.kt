@@ -53,7 +53,7 @@ class PhotoViewActivity : AppCompatActivity() {
             val request = DownloadRequest(url, { response ->
                 run {
                     file.writeBytes(response)
-                    val uri = FileProvider.getUriForFile(this, "com.mfuns.webapp.viewerprovider", file)
+                    val uri = FileProvider.getUriForFile(this, "cn.mfuns.webapp.viewerprovider", file)
                     binding.photoView.setImageURI(uri)
                     binding.loadingBar.isIndeterminate = false
                 }
