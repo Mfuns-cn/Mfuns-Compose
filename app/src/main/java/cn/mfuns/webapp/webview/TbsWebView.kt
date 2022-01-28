@@ -53,6 +53,10 @@ internal class TbsWebView : MfunsWebView() {
             javaScriptEnabled = true
             setSupportZoom(false)
             cacheMode = WebSettings.LOAD_NO_CACHE
+            domStorageEnabled = true
+            databaseEnabled = true
+            setAppCacheEnabled(true)
+            setAppCacheMaxSize(1024 * 1024 * 8)
             userAgentString =
                 "Mfuns-WebApp/${
                     context.packageManager.getPackageInfo(
