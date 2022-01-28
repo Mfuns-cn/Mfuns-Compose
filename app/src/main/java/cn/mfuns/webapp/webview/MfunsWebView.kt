@@ -5,7 +5,7 @@ import android.view.View
 
 abstract class MfunsWebView {
     // Lifecycle
-    abstract fun initialize(context: Context, listener: WebViewInitializedListener)
+    abstract fun initialize(context: Context, listener: (() -> Unit))
     abstract fun destroy()
 
     // Utils
@@ -13,11 +13,9 @@ abstract class MfunsWebView {
     abstract fun goBack(): Boolean
 
     // Listener
-    protected val listeners: HashSet<WebViewInitializedListener> =
-        HashSet<WebViewInitializedListener>()
+    protected var listener: (() -> Unit)? = null
 
     protected fun notifyInitialized() {
-        for (listener in listeners) listener.initialized()
-        listeners.clear()
+        listener?.invoke()
     }
 }

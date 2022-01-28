@@ -12,7 +12,6 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import cn.mfuns.webapp.webview.WebViewContainer
-import cn.mfuns.webapp.webview.WebViewInitializedListener
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,12 +50,10 @@ class SplashActivity : AppCompatActivity() {
                 resources.getStringArray(R.array.settings_webview_core_list)[0]
             ) == resources.getStringArray(R.array.settings_webview_core_list)[1]
             WebViewContainer.defaultContainer = WebViewContainer(useTbs)
-            WebViewContainer.defaultContainer.initialize(this@SplashActivity, object : WebViewInitializedListener {
-                override fun initialized() {
-                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-                    finish()
-                }
-            })
+            WebViewContainer.defaultContainer.initialize(this@SplashActivity) {
+                startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                finish()
+            }
         }, 100)
     }
 }

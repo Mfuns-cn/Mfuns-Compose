@@ -18,8 +18,8 @@ internal class SystemWebView : MfunsWebView() {
     private var webView: WebView? = null
 
     @SuppressLint("SetJavaScriptEnabled")
-    override fun initialize(context: Context, listener: WebViewInitializedListener) {
-        listeners += listener
+    override fun initialize(context: Context, listener: (() -> Unit)) {
+        this.listener = listener
 
         if (webView != null) notifyInitialized()
 

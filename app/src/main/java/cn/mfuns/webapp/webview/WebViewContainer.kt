@@ -10,7 +10,7 @@ class WebViewContainer(useTbs: Boolean) : MfunsWebView() {
 
     private var webView: MfunsWebView? = null
 
-    override fun initialize(context: Context, listener: WebViewInitializedListener) =
+    override fun initialize(context: Context, listener: (() -> Unit)) =
         webView!!.initialize(context, listener)
 
     override fun destroy() = webView!!.destroy()
