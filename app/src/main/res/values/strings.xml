@@ -16,6 +16,7 @@
     <string name="viewer_open">打开</string>
     <string name="viewer_download">下载</string>
     <string name="viewer_downloading">下载中</string>
+    <string name="viewer_download_completed">成功保存到 %s</string>
     <string name="viewer_download_failed">下载失败</string>
 
     <!-- Settings -->
