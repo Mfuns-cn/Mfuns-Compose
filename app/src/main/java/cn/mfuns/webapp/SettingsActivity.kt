@@ -149,7 +149,7 @@ class SettingsActivity : AppCompatActivity() {
                 Preference.SummaryProvider<ListPreference> {
                     PreferenceManager.getDefaultSharedPreferences(requireContext()).getString(
                         "settings_viewer_default_action",
-                        resources.getStringArray(R.array.settings_webview_core_list)[0]
+                        resources.getStringArray(R.array.settings_viewer_action_list)[0]
                     )
                 }
 
