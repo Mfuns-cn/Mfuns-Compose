@@ -1,15 +1,13 @@
 package cn.mfuns.webapp
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.View
-import android.view.WindowManager
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
+import cn.mfuns.webapp.util.AndroidUtil.Companion.setFullscreen
 import cn.mfuns.webapp.webview.WebViewContainer
 
 class SplashActivity : AppCompatActivity() {
@@ -17,18 +15,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // Adapt to full screen
-        window.decorView.systemUiVisibility =
-            (View.SYSTEM_UI_FLAG_FULLSCREEN
-                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
-                window.attributes.layoutInDisplayCutoutMode =
-                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_ALWAYS
-            else window.attributes.layoutInDisplayCutoutMode =
-                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+        window.setFullscreen(true)
 
         // Load Splash Image
         val image = ImageView(this)
