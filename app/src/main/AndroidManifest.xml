@@ -27,7 +27,7 @@
         <activity
             android:name=".SplashActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Mfuns.Splash">
+            android:theme="@style/Theme.Mfuns.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -52,7 +52,7 @@
         />
         <activity
             android:name=".PhotoViewActivity"
-            android:theme="@style/Theme.Mfuns.PhotoView"
+            android:theme="@style/Theme.Mfuns.Fullscreen"
         />
 
         <!-- Services -->

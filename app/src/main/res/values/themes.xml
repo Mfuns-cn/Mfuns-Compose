@@ -1,19 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.Mfuns.Splash" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowActionBar">false</item>
-    </style>
     <style name="Theme.Mfuns.Main" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:statusBarColor">#777FFB</item>
         <item name="android:navigationBarColor">#FFFFFF</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
-    <style name="Theme.Mfuns.Fullscreen" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowActionBarOverlay">true</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@android:color/black</item>
-    </style>
-    <style name="Theme.Mfuns.PhotoView" parent="Theme.MaterialComponents">
+    <style name="Theme.Mfuns.Fullscreen" parent="Theme.MaterialComponents">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/black</item>
