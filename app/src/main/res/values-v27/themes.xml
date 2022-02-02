@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<resources>
-    <style name="Theme.Mfuns.Main" parent="Theme.Mfuns.Base">
-        <item name="android:statusBarColor">#777FFB</item>
-        <item name="android:navigationBarColor">#FFFFFF</item>
-        <item name="android:windowLightNavigationBar">true</item>
-        <item name="android:windowLightStatusBar">false</item>
-    </style>
-</resources>

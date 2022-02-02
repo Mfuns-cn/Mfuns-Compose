@@ -1,8 +1,10 @@
 package cn.mfuns.webapp
 
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
@@ -42,7 +44,10 @@ class MainActivity : AppCompatActivity() {
         window.setFullscreen(false)
 
         // Change Theme
-        setTheme(R.style.Theme_Mfuns_Main)
+        window.statusBarColor = 0xff777ffb.toInt()
+        window.navigationBarColor = 0xffffffff.toInt()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
 
         // Use WebView
         setContentView(WebViewContainer.defaultContainer.getView())

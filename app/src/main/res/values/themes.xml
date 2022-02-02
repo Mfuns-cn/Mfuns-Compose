@@ -4,9 +4,4 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/black</item>
     </style>
-    <style name="Theme.Mfuns.Main" parent="Theme.Mfuns.Base">
-        <item name="android:statusBarColor">#777FFB</item>
-        <item name="android:navigationBarColor">#FFFFFF</item>
-        <item name="android:windowLightStatusBar">false</item>
-    </style>
 </resources>
