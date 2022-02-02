@@ -2,7 +2,6 @@ package cn.mfuns.webapp.webview
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.DialogInterface
 import android.os.Process
 import android.view.KeyEvent
 import android.view.View
@@ -24,16 +23,12 @@ internal class SystemWebView : MfunsWebView() {
         if (webView != null) notifyInitialized()
 
         try {
-            webView = WebView(context.applicationContext)
+            webView = WebView(context)
         } catch (e: Exception) {
             AlertDialog.Builder(context).apply {
                 setTitle(R.string.webview_missing_title)
                 setMessage(R.string.webview_missing_message)
-                setPositiveButton(
-                    R.string.ok,
-                    DialogInterface.OnClickListener { _, _ ->
-                        Process.killProcess(Process.myPid())
-                    })
+                setPositiveButton(R.string.ok) { _, _ -> Process.killProcess(Process.myPid()) }
                 setCancelable(false)
                 show()
             }
@@ -80,7 +75,7 @@ internal class SystemWebView : MfunsWebView() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 webView!!.webViewClient = object : WebViewClient() {
                     override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                        return MfunsWebViewClient.shouldOverrideUrlLoading(context.applicationContext, url)
+                        return MfunsWebViewClient.shouldOverrideUrlLoading(context, url)
                     }
                 }
                 notifyInitialized()
