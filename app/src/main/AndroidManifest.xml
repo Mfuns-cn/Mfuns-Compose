@@ -27,7 +27,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Mfuns.Fullscreen"
+            android:theme="@style/Theme.Mfuns.Base"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,7 +47,7 @@
         />
         <activity
             android:name=".PhotoViewActivity"
-            android:theme="@style/Theme.Mfuns.Fullscreen"
+            android:theme="@style/Theme.Mfuns.Base"
         />
 
         <!-- Services -->
