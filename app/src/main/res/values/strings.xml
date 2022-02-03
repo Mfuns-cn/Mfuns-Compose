@@ -7,6 +7,8 @@
     <string name="positive">是</string>
     <string name="negative">否</string>
 
+    <string name="back_press_prompt">再按一次退出</string>
+
     <!-- No WebView -->
     <string name="webview_missing_title">WebView 未找到</string>
     <string
