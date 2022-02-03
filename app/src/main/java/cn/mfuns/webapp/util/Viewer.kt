@@ -81,6 +81,9 @@ class Viewer {
             ".webp" to "image/webp"
         )
 
+        fun parseExt(path: String): String? =
+            imageExtList.keys.singleOrNull { x -> path.endsWith(x) }
+
         private fun openIntl(activity: Activity, uri: Uri): Boolean {
             Intent(Intent.ACTION_VIEW).apply {
                 data = uri
@@ -96,7 +99,7 @@ class Viewer {
             file: File,
             filename: String
         ): String? {
-            val ext = imageExtList.keys.singleOrNull { x -> filename.endsWith(x) } ?: return null
+            val ext = parseExt(filename) ?: return null
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 // Use MediaStorage
                 val now = System.currentTimeMillis()
