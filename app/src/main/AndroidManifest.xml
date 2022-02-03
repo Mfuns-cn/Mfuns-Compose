@@ -42,7 +42,7 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/settings_title"
-            android:theme="@style/Theme.AppCompat.Light"
+            android:theme="@style/Theme.MaterialComponents"
             android:launchMode="singleTask"
         />
         <activity
