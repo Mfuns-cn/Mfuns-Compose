@@ -17,9 +17,6 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import com.ilharper.droidup.DroidUp
 import com.ilharper.droidup.droidUp
-import com.tencent.smtt.sdk.CookieManager
-import com.tencent.smtt.sdk.QbSdk
-import com.tencent.smtt.sdk.WebStorage
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -98,28 +95,6 @@ class SettingsActivity : AppCompatActivity() {
                     )
                 }
 
-            // Clear cookies
-            val preferenceClearCookies = findPreference<Preference>("settings_clear_cookies")
-            preferenceClearCookies!!.summaryProvider =
-                Preference.SummaryProvider<Preference> {
-                    "${listOf(CookieManager.getInstance()).size} 个 Cookie，${listOf(WebStorage.getInstance()).size} 项 WebStorage"
-                }
-            preferenceClearCookies.onPreferenceClickListener =
-                Preference.OnPreferenceClickListener {
-                    AlertDialog.Builder(requireContext()).apply {
-                        setTitle(R.string.settings_clear_cookies)
-                        setMessage(R.string.settings_clear_cookies_prompt)
-                        setPositiveButton(R.string.positive) { _, _ ->
-                            CookieManager.getInstance().removeAllCookies(null)
-                            WebStorage.getInstance().deleteAllData()
-                            Process.killProcess(Process.myPid())
-                        }
-                        setNegativeButton(R.string.negative, null)
-                        show()
-                    }
-                    true
-                }
-
             // Clear data
             val preferenceClearData = findPreference<Preference>("settings_clear_data")
             preferenceClearData!!.onPreferenceClickListener =
@@ -128,19 +103,17 @@ class SettingsActivity : AppCompatActivity() {
                         setTitle(R.string.settings_clear_data)
                         setMessage(R.string.settings_clear_data_prompt)
                         setPositiveButton(R.string.positive) { _, _ ->
-                            QbSdk.clearAllWebViewCache(requireContext(), true)
+                            android.webkit.CookieManager.getInstance().removeAllCookies(null)
+                            android.webkit.WebStorage.getInstance().deleteAllData()
+                            com.tencent.smtt.sdk.CookieManager.getInstance().removeAllCookies(null)
+                            com.tencent.smtt.sdk.WebStorage.getInstance().deleteAllData()
+                            com.tencent.smtt.sdk.QbSdk.clearAllWebViewCache(requireContext(), true)
                             Process.killProcess(Process.myPid())
                         }
                         setNegativeButton(R.string.negative, null)
                         show()
                     }
                     true
-                }
-
-            val preferenceTbsVersion = findPreference<Preference>("settings_webview_tbs_version")
-            preferenceTbsVersion!!.summaryProvider =
-                Preference.SummaryProvider<Preference> {
-                    QbSdk.getTbsVersion(requireContext()).toString()
                 }
 
             // Viewer

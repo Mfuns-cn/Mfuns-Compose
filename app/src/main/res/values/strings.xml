@@ -32,14 +32,9 @@
     <string name="settings_webview_core_change">切换 WebView 核心</string>
     <string
         name="settings_webview_core_change_prompt">WebView 核心已切换，重新启动应用即可生效。</string>
-    <string name="settings_clear_cache">清除缓存</string>
-    <string name="settings_clear_cookies">清除登录状态</string>
-    <string
-        name="settings_clear_cookies_prompt">是否清除登录状态并退出？登录状态清除后，你需要重新登录。</string>
     <string name="settings_clear_data">清除所有数据</string>
     <string
         name="settings_clear_data_prompt">是否清除所有应用数据？应用数据清除后，你需要重新登录。</string>
-    <string name="settings_webview_tbs_version">TBS 版本</string>
     <string name="settings_viewer">文件查看器</string>
     <string name="settings_viewer_default_action">默认执行的操作</string>
     <string-array name="settings_viewer_action_list">
