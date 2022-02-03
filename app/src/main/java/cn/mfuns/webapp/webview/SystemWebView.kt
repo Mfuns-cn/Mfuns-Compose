@@ -1,7 +1,7 @@
 package cn.mfuns.webapp.webview
 
 import android.annotation.SuppressLint
-import android.content.Context
+import android.app.Activity
 import android.os.Process
 import android.view.KeyEvent
 import android.view.View
@@ -17,15 +17,15 @@ internal class SystemWebView : MfunsWebView() {
     private var webView: WebView? = null
 
     @SuppressLint("SetJavaScriptEnabled")
-    override fun initialize(context: Context, listener: (() -> Unit)) {
+    override fun initialize(activity: Activity, listener: (() -> Unit)) {
         this.listener = listener
 
         if (webView != null) notifyInitialized()
 
         try {
-            webView = WebView(context)
+            webView = WebView(activity)
         } catch (e: Exception) {
-            AlertDialog.Builder(context).apply {
+            AlertDialog.Builder(activity).apply {
                 setTitle(R.string.webview_missing_title)
                 setMessage(R.string.webview_missing_message)
                 setPositiveButton(R.string.ok) { _, _ -> Process.killProcess(Process.myPid()) }
@@ -46,8 +46,8 @@ internal class SystemWebView : MfunsWebView() {
             setAppCacheMaxSize(1024 * 1024 * 8)
             userAgentString =
                 "Mfuns-WebApp/${
-                    context.packageManager.getPackageInfo(
-                        context.packageName,
+                    activity.packageManager.getPackageInfo(
+                        activity.packageName,
                         0
                     ).versionName
                 } $userAgentString"
@@ -75,14 +75,14 @@ internal class SystemWebView : MfunsWebView() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 webView!!.webViewClient = object : WebViewClient() {
                     override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                        return MfunsWebViewClient.shouldOverrideUrlLoading(context, url)
+                        return MfunsWebViewClient.shouldOverrideUrlLoading(activity, url)
                     }
                 }
                 notifyInitialized()
             }
         }
 
-        webView!!.loadUrl(context.getText(R.string.app_url) as String)
+        webView!!.loadUrl(activity.getText(R.string.app_url) as String)
     }
 
     override fun destroy() {

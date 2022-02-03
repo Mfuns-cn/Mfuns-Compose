@@ -1,11 +1,11 @@
 package cn.mfuns.webapp.webview
 
-import android.content.Context
+import android.app.Activity
 import android.view.View
 
 abstract class MfunsWebView {
     // Lifecycle
-    abstract fun initialize(context: Context, listener: (() -> Unit))
+    abstract fun initialize(activity: Activity, listener: (() -> Unit))
     abstract fun destroy()
 
     // Utils
