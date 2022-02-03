@@ -89,7 +89,7 @@ internal class SystemWebView : MfunsWebView() {
         webView?.apply {
             loadDataWithBaseURL(null, "", "text/html", "utf-8", null)
             clearHistory()
-            (parent as ViewGroup).removeView(this)
+            parent?.let { (it as ViewGroup).removeView(this) }
             webView = null
         }
     }
