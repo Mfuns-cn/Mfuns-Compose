@@ -41,50 +41,52 @@ class MfunsWebViewContainer(private val activity: Activity) {
             return
         }
 
-        // Configure
-        webView!!.settings.apply {
-            javaScriptEnabled = true
-            setSupportZoom(false)
-            cacheMode = WebSettings.LOAD_NO_CACHE
-            domStorageEnabled = true
-            databaseEnabled = true
-            setAppCacheEnabled(true)
-            setAppCacheMaxSize(1024 * 1024 * 8)
-            userAgentString =
-                "Mfuns-WebApp/${
-                    activity.packageManager.getPackageInfo(
-                        activity.packageName,
-                        0
-                    ).versionName
-                } $userAgentString"
-        }
-
         // Cookie
         CookieManager.getInstance().apply {
             setAcceptCookie(true)
             setAcceptThirdPartyCookies(webView, true)
         }
 
-        // Handle back
-        webView!!.setOnKeyListener(object : View.OnKeyListener {
-            override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
-                if (keyCode == KeyEvent.KEYCODE_BACK && webView!!.canGoBack()) {
-                    webView!!.goBack()
-                    return true
+        // Configure
+        webView!!.apply {
+            settings.apply {
+                javaScriptEnabled = true
+                setSupportZoom(false)
+                cacheMode = WebSettings.LOAD_NO_CACHE
+                domStorageEnabled = true
+                databaseEnabled = true
+                setAppCacheEnabled(true)
+                setAppCacheMaxSize(1024 * 1024 * 8)
+                userAgentString =
+                    "Mfuns-WebApp/${
+                        activity.packageManager.getPackageInfo(
+                            activity.packageName,
+                            0
+                        ).versionName
+                    } $userAgentString"
+            }
+
+            // Handle back
+            setOnKeyListener(object : View.OnKeyListener {
+                override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
+                    if (keyCode == KeyEvent.KEYCODE_BACK && webView!!.canGoBack()) {
+                        webView!!.goBack()
+                        return true
+                    }
+                    return false
                 }
-                return false
-            }
-        })
+            })
 
-        // Listen onPageFinished()
-        webView!!.webViewClient = object : WebViewClient() {
-            override fun onPageFinished(view: WebView?, url: String?) {
-                webView!!.webViewClient = MfunsWebViewClient(activity)
-                completed()
+            // Listen onPageFinished()
+            webViewClient = object : WebViewClient() {
+                override fun onPageFinished(view: WebView?, url: String?) {
+                    webView!!.webViewClient = MfunsWebViewClient(activity)
+                    completed()
+                }
             }
+
+            loadUrl(activity.getString(R.string.app_url))
         }
-
-        webView!!.loadUrl(activity.getText(R.string.app_url) as String)
     }
 
     fun destroy() {
