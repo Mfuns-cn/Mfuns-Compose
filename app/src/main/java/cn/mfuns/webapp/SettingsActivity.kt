@@ -4,7 +4,6 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.os.Process
@@ -29,29 +28,6 @@ class SettingsActivity : AppCompatActivity() {
                 .replace(R.id.settings, SettingsFragment())
                 .commit()
         }
-    }
-
-    private val preferenceWebViewCoreListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
-        if (key != "settings_webview_core") return@OnSharedPreferenceChangeListener
-        AlertDialog.Builder(this).apply {
-            setTitle(R.string.settings_webview_core_change)
-            setMessage(R.string.settings_webview_core_change_prompt)
-            setPositiveButton(R.string.ok) { _, _ -> Process.killProcess(Process.myPid()) }
-            setCancelable(false)
-            show()
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        PreferenceManager.getDefaultSharedPreferences(this)
-            .registerOnSharedPreferenceChangeListener(preferenceWebViewCoreListener)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        PreferenceManager.getDefaultSharedPreferences(this)
-            .unregisterOnSharedPreferenceChangeListener(preferenceWebViewCoreListener)
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
@@ -83,16 +59,6 @@ class SettingsActivity : AppCompatActivity() {
                     )
                     Toast.makeText(requireContext(), R.string.settings_copied, Toast.LENGTH_SHORT).show()
                     true
-                }
-
-            // WebView core
-            val preferenceWebViewCore = findPreference<ListPreference>("settings_webview_core")
-            preferenceWebViewCore!!.summaryProvider =
-                Preference.SummaryProvider<ListPreference> {
-                    PreferenceManager.getDefaultSharedPreferences(requireContext()).getString(
-                        "settings_webview_core",
-                        resources.getStringArray(R.array.settings_webview_core_list)[0]
-                    )
                 }
 
             // Clear data

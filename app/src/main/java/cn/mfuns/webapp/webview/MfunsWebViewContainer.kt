@@ -6,28 +6,34 @@ import android.os.Process
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.CookieManager
-import android.webkit.WebSettings
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.appcompat.app.AlertDialog
 import cn.mfuns.webapp.R
+import com.tencent.smtt.export.external.TbsCoreSettings
+import com.tencent.smtt.sdk.CookieManager
+import com.tencent.smtt.sdk.QbSdk
+import com.tencent.smtt.sdk.WebSettings
+import com.tencent.smtt.sdk.WebView
+import com.tencent.smtt.sdk.WebViewClient
 
-internal class SystemWebView : MfunsWebView() {
+class MfunsWebViewContainer(private val activity: Activity) {
     private var webView: WebView? = null
 
     @SuppressLint("SetJavaScriptEnabled")
-    override fun initialize(activity: Activity, listener: (() -> Unit)) {
-        this.listener = listener
+    fun initialize(completed: (() -> Unit)) {
+        if (webView != null) completed()
 
-        if (webView != null) notifyInitialized()
+        // Initialize dex2oat
+        val map = HashMap<String?, Any?>()
+        map[TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER] = true
+        map[TbsCoreSettings.TBS_SETTINGS_USE_DEXLOADER_SERVICE] = true
+        QbSdk.initTbsSettings(map)
 
         try {
             webView = WebView(activity)
         } catch (e: Exception) {
             AlertDialog.Builder(activity).apply {
-                setTitle(R.string.webview_missing_title)
-                setMessage(R.string.webview_missing_message)
+                setTitle(R.string.tbs_initialize_failed)
+                setMessage(R.string.tbs_initialize_failed_message)
                 setPositiveButton(R.string.ok) { _, _ -> Process.killProcess(Process.myPid()) }
                 setCancelable(false)
                 show()
@@ -73,19 +79,15 @@ internal class SystemWebView : MfunsWebView() {
         // Listen onPageFinished()
         webView!!.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
-                webView!!.webViewClient = object : WebViewClient() {
-                    override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                        return MfunsWebViewClient.shouldOverrideUrlLoading(activity, url)
-                    }
-                }
-                notifyInitialized()
+                webView!!.webViewClient = MfunsWebViewClient(activity)
+                completed()
             }
         }
 
         webView!!.loadUrl(activity.getText(R.string.app_url) as String)
     }
 
-    override fun destroy() {
+    fun destroy() {
         webView?.apply {
             loadDataWithBaseURL(null, "", "text/html", "utf-8", null)
             clearHistory()
@@ -94,9 +96,9 @@ internal class SystemWebView : MfunsWebView() {
         }
     }
 
-    override fun getView(): View = webView as View
+    fun getView(): View = webView as View
 
-    override fun goBack(): Boolean = if (webView!!.canGoBack()) {
+    fun goBack(): Boolean = if (webView!!.canGoBack()) {
         webView!!.goBack()
         true
     } else false

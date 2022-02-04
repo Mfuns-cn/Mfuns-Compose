@@ -9,10 +9,10 @@
 
     <string name="back_press_prompt">再按一次退出</string>
 
-    <!-- No WebView -->
-    <string name="webview_missing_title">WebView 未找到</string>
+    <!-- TBS Failed -->
+    <string name="tbs_initialize_failed">TBS 启动失败</string>
     <string
-        name="webview_missing_message">设备上没有安装 WebView。请在应用设置页尝试切换 WebView 核心。</string>
+        name="tbs_initialize_failed_message">TBS 启动失败。\n这种情况较为少见，请联系开发者获取支持。</string>
 
     <!-- File Viewer -->
     <string name="viewer_open">打开</string>
@@ -24,16 +24,6 @@
     <!-- Settings -->
     <string name="settings_title">设置</string>
     <string name="settings_webview">WebView</string>
-    <string name="settings_webview_core">WebView 核心</string>
-    <string-array name="settings_webview_core_list">
-        <item>@string/settings_webview_core_system</item>
-        <item>@string/settings_webview_core_tbs</item>
-    </string-array>
-    <string name="settings_webview_core_system">Android System WebView</string>
-    <string name="settings_webview_core_tbs">TBS（QQ 浏览器）</string>
-    <string name="settings_webview_core_change">切换 WebView 核心</string>
-    <string
-        name="settings_webview_core_change_prompt">WebView 核心已切换，重新启动应用即可生效。</string>
     <string name="settings_clear_data">清除所有数据</string>
     <string
         name="settings_clear_data_prompt">是否清除所有应用数据？应用数据清除后，你需要重新登录。</string>

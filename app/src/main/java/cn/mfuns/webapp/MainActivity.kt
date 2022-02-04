@@ -8,14 +8,14 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.preference.PreferenceManager
 import cn.mfuns.webapp.util.AndroidUtil.Companion.setFullscreen
-import cn.mfuns.webapp.webview.WebViewContainer
+import cn.mfuns.webapp.webview.MfunsWebViewContainer
 import com.ilharper.droidup.DroidUp
 import com.ilharper.droidup.droidUp
 
 class MainActivity : AppCompatActivity() {
     private var isInitialized = false
+    private lateinit var webViewContainer: MfunsWebViewContainer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,12 +31,8 @@ class MainActivity : AppCompatActivity() {
 
         // Load WebView
         Handler(Looper.getMainLooper()).postDelayed({
-            val useTbs = PreferenceManager.getDefaultSharedPreferences(this).getString(
-                "settings_webview_core",
-                resources.getStringArray(R.array.settings_webview_core_list)[0]
-            ) == resources.getStringArray(R.array.settings_webview_core_list)[1]
-            WebViewContainer.defaultContainer = WebViewContainer(useTbs)
-            WebViewContainer.defaultContainer.initialize(this, this::initializeWebView)
+            webViewContainer = MfunsWebViewContainer(this)
+            webViewContainer.initialize(this::initializeWebView)
         }, 100)
     }
 
@@ -51,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
 
         // Use WebView
-        setContentView(WebViewContainer.defaultContainer.getView())
+        setContentView(webViewContainer.getView())
 
         // Check Update
         Handler(Looper.getMainLooper()).postDelayed({
@@ -70,7 +66,7 @@ class MainActivity : AppCompatActivity() {
             finish()
             return
         }
-        if (WebViewContainer.defaultContainer.goBack()) return
+        if (webViewContainer.goBack()) return
         val now = System.currentTimeMillis()
         if (now - backPressTime > 2000) {
             backPressTime = now
@@ -79,7 +75,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        WebViewContainer.defaultContainer.destroy()
+        webViewContainer.destroy()
         super.onDestroy()
     }
 }
