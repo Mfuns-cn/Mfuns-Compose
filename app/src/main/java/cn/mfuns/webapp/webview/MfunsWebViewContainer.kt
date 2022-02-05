@@ -7,6 +7,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.preference.PreferenceManager
 import cn.mfuns.webapp.R
 import com.tencent.smtt.export.external.TbsCoreSettings
 import com.tencent.smtt.sdk.CookieManager
@@ -64,6 +65,15 @@ class MfunsWebViewContainer(private val activity: Activity) {
                             0
                         ).versionName
                     } $userAgentString"
+            }
+
+            x5WebViewExtension?.apply {
+                settingsExtension?.apply {
+                    setDayOrNight(
+                        !PreferenceManager.getDefaultSharedPreferences(activity)
+                            .getBoolean("settings_display_night_mode", false)
+                    )
+                }
             }
 
             // Handle back
