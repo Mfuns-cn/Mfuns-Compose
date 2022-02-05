@@ -37,9 +37,10 @@ class MainActivity : AppCompatActivity() {
         }, 100)
     }
 
-    override fun onResume() {
-        super.onResume()
-        if (isInitialized) updateTheme()
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (!isInitialized) window.setFullscreen(true)
+        else updateTheme()
     }
 
     private fun initializeWebView() {
