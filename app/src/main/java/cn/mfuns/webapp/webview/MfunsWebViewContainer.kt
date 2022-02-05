@@ -95,6 +95,8 @@ class MfunsWebViewContainer(private val activity: Activity) {
                 }
             }
 
+            webChromeClient = MfunsWebChromeClient()
+
             loadUrl(activity.getString(R.string.app_url))
         }
     }
