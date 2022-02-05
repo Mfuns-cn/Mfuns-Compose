@@ -23,10 +23,15 @@
 
     <!-- Settings -->
     <string name="settings_title">设置</string>
+
+    <!-- Settings - WebView -->
     <string name="settings_webview">WebView</string>
     <string name="settings_clear_data">清除所有数据</string>
     <string
         name="settings_clear_data_prompt">是否清除所有应用数据？应用数据清除后，你需要重新登录。</string>
+    <string name="settings_webview_tbs_version">TBS 版本</string>
+
+    <!-- Settings - File Viewer -->
     <string name="settings_viewer">文件查看器</string>
     <string name="settings_viewer_default_action">默认执行的操作</string>
     <string-array name="settings_viewer_action_list">
@@ -39,7 +44,8 @@
     <string
         name="settings_viewer_action_open_external">使用系统应用打开</string>
     <string name="settings_viewer_action_download">下载到本地</string>
-    <string name="settings_webview_tbs_version">TBS 版本</string>
+
+    <!-- Settings - About -->
     <string name="settings_about">关于</string>
     <string name="settings_update">检查更新</string>
     <string name="settings_group">反馈交流群</string>
