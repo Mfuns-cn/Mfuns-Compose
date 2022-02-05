@@ -37,23 +37,17 @@ class MainActivity : AppCompatActivity() {
         }, 100)
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (isInitialized) updateTheme()
+    }
+
     private fun initializeWebView() {
         // Disable Fullscreen
         window.setFullscreen(false)
 
         // Change Theme
-        if (
-            PreferenceManager.getDefaultSharedPreferences(this)
-                .getBoolean("settings_display_night_mode", false)
-        ) {
-            window.statusBarColor = 0xff252733.toInt()
-            window.navigationBarColor = 0xff202328.toInt()
-        } else {
-            window.statusBarColor = 0xff777ffb.toInt()
-            window.navigationBarColor = 0xffffffff.toInt()
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-        }
+        updateTheme()
 
         // Use WebView
         setContentView(webViewContainer.getView())
@@ -66,6 +60,21 @@ class MainActivity : AppCompatActivity() {
         }, 1000)
 
         isInitialized = true
+    }
+
+    private fun updateTheme() {
+        if (
+            PreferenceManager.getDefaultSharedPreferences(this)
+                .getBoolean("settings_display_night_mode", false)
+        ) {
+            window.statusBarColor = 0xff252733.toInt()
+            window.navigationBarColor = 0xff202328.toInt()
+        } else {
+            window.statusBarColor = 0xff777ffb.toInt()
+            window.navigationBarColor = 0xffffffff.toInt()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+        }
     }
 
     private var backPressTime: Long = -2500
