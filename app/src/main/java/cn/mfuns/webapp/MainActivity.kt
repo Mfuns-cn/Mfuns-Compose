@@ -21,6 +21,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        window.decorView.setOnSystemUiVisibilityChangeListener {
+            if (!isInitialized) window.setFullscreen(true)
+            else updateTheme()
+        }
+
         // Adapt to full screen
         window.setFullscreen(true)
 
@@ -35,12 +40,6 @@ class MainActivity : AppCompatActivity() {
             webViewContainer = MfunsWebViewContainer(this)
             webViewContainer.initialize(this::initializeWebView)
         }, 100)
-    }
-
-    override fun onWindowFocusChanged(hasFocus: Boolean) {
-        super.onWindowFocusChanged(hasFocus)
-        if (!isInitialized) window.setFullscreen(true)
-        else updateTheme()
     }
 
     private fun initializeWebView() {
