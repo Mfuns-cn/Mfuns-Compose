@@ -2,6 +2,7 @@ package cn.mfuns.webapp.webview
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.widget.Toast
 import androidx.preference.PreferenceManager
 import cn.mfuns.webapp.PhotoViewActivity
@@ -14,6 +15,16 @@ import java.net.URL
 class MfunsWebViewClient(private val activity: Activity) : WebViewClient() {
     override fun shouldOverrideUrlLoading(v: WebView?, url: String): Boolean {
         try {
+            // Intercept mqqopensdkapi/mqqwpa
+            if (url.contains("mqqopensdkapi") or url.contains("mqqwpa")) {
+                try {
+                    activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                } catch (e: Exception) {
+                    Toast.makeText(activity, R.string.settings_group_join_failed, Toast.LENGTH_SHORT).show()
+                }
+                return true
+            }
+
             // Parse URL
             var path = URL(url).path
             if (path == "/") return false
