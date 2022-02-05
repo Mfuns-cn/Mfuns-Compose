@@ -69,6 +69,7 @@ class MainActivity : AppCompatActivity() {
         ) {
             window.statusBarColor = 0xff252733.toInt()
             window.navigationBarColor = 0xff202328.toInt()
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LOW_PROFILE
         } else {
             window.statusBarColor = 0xff777ffb.toInt()
             window.navigationBarColor = 0xffffffff.toInt()
