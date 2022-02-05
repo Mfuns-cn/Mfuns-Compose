@@ -1,5 +1,6 @@
 package cn.mfuns.webapp
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -7,6 +8,9 @@ import android.os.Looper
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import cn.mfuns.webapp.util.AndroidUtil.Companion.setFullscreen
@@ -17,6 +21,18 @@ import com.ilharper.droidup.droidUp
 class MainActivity : AppCompatActivity() {
     private var isInitialized = false
     private lateinit var webViewContainer: MfunsWebViewContainer
+
+    // region File Chooser
+
+    private var fileChooserLauncher: ActivityResultLauncher<Intent> =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { fileChooserCompleted?.invoke(it) }
+    var fileChooserCompleted: ((ActivityResult) -> Unit)? = null
+
+    fun chooseFile(intent: Intent) = fileChooserLauncher.launch(intent)
+
+    // endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

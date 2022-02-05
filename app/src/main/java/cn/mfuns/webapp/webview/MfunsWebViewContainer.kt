@@ -1,13 +1,13 @@
 package cn.mfuns.webapp.webview
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.os.Process
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.preference.PreferenceManager
+import cn.mfuns.webapp.MainActivity
 import cn.mfuns.webapp.R
 import com.tencent.smtt.export.external.TbsCoreSettings
 import com.tencent.smtt.sdk.CookieManager
@@ -16,7 +16,7 @@ import com.tencent.smtt.sdk.WebSettings
 import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
 
-class MfunsWebViewContainer(private val activity: Activity) {
+class MfunsWebViewContainer(private val activity: MainActivity) {
     private var webView: WebView? = null
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -95,7 +95,7 @@ class MfunsWebViewContainer(private val activity: Activity) {
                 }
             }
 
-            webChromeClient = MfunsWebChromeClient()
+            webChromeClient = MfunsWebChromeClient(activity)
 
             loadUrl(activity.getString(R.string.app_url))
         }

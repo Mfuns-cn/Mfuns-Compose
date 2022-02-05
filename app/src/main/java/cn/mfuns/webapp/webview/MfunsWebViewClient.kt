@@ -1,10 +1,10 @@
 package cn.mfuns.webapp.webview
 
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 import androidx.preference.PreferenceManager
+import cn.mfuns.webapp.MainActivity
 import cn.mfuns.webapp.PhotoViewActivity
 import cn.mfuns.webapp.R
 import cn.mfuns.webapp.util.Viewer
@@ -12,7 +12,7 @@ import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
 import java.net.URL
 
-class MfunsWebViewClient(private val activity: Activity) : WebViewClient() {
+class MfunsWebViewClient(private val activity: MainActivity) : WebViewClient() {
     override fun shouldOverrideUrlLoading(v: WebView?, url: String): Boolean {
         try {
             // Intercept mqqopensdkapi/mqqwpa
