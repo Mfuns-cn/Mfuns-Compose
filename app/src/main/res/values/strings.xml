@@ -24,6 +24,9 @@
     <!-- Settings -->
     <string name="settings_title">设置</string>
 
+    <!-- SettingsLib -->
+    <string name="settingslib_learn_more_text">"了解详情"</string>
+
     <!-- Settings - WebView -->
     <string name="settings_webview">WebView</string>
     <string name="settings_clear_data">清除所有数据</string>
