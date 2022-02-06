@@ -37,10 +37,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        window.decorView.setOnSystemUiVisibilityChangeListener {
-            if (!isInitialized) window.setFullscreen(true)
-            else updateTheme()
-        }
+        window.decorView.setOnSystemUiVisibilityChangeListener { if (isInitialized) updateTheme() }
 
         // Adapt to full screen
         window.setFullscreen(true)
