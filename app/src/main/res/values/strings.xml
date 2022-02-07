@@ -30,7 +30,7 @@
     <!-- Settings - Display -->
     <string name="settings_display">显示</string>
     <string
-        name="settings_display_footer">某些功能需要在连接至 WiFi 后下载。</string>
+        name="settings_display_footer">某些功能需要在连接至 Wi-Fi 后下载。</string>
     <string name="settings_display_night_mode">夜间模式</string>
 
     <!-- Settings - WebView -->
