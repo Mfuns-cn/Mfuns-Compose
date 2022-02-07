@@ -52,12 +52,19 @@ class MfunsWebViewContainer(private val activity: MainActivity) {
         webView!!.apply {
             settings.apply {
                 javaScriptEnabled = true
+                javaScriptCanOpenWindowsAutomatically = true
+                mixedContentMode = android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
                 setSupportZoom(false)
+                builtInZoomControls = false
+                displayZoomControls = false
+                useWideViewPort = true
+                loadWithOverviewMode = true
                 cacheMode = WebSettings.LOAD_NO_CACHE
                 domStorageEnabled = true
                 databaseEnabled = true
                 setAppCacheEnabled(true)
                 setAppCacheMaxSize(1024 * 1024 * 8)
+                saveFormData = true
                 userAgentString =
                     "Mfuns-WebApp/${
                         activity.packageManager.getPackageInfo(
