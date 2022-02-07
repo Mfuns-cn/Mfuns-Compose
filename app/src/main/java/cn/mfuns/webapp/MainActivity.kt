@@ -80,12 +80,12 @@ class MainActivity : AppCompatActivity() {
             PreferenceManager.getDefaultSharedPreferences(this)
                 .getBoolean("settings_display_night_mode", false)
         ) {
-            window.statusBarColor = 0xff252733.toInt()
-            window.navigationBarColor = 0xff202328.toInt()
+            window.statusBarColor = -14342349 // 0xff252733.toInt()
+            window.navigationBarColor = -14671064 // 0xff202328.toInt()
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LOW_PROFILE
         } else {
-            window.statusBarColor = 0xff777ffb.toInt()
-            window.navigationBarColor = 0xffffffff.toInt()
+            window.statusBarColor = -8945669 // 0xff777ffb.toInt()
+            window.navigationBarColor = -1 // 0xffffffff.toInt()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
                 window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
         }
