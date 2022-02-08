@@ -23,11 +23,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:usesCleartextTraffic="true"
         android:hardwareAccelerated="true"
-        android:theme="@style/Theme.AppCompat.Light">
+        android:theme="@style/Theme.Mfuns.Base">
         <activity
             android:name=".view.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Mfuns.Base"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"
@@ -52,7 +51,6 @@
         />
         <activity
             android:name=".view.PhotoViewActivity"
-            android:theme="@style/Theme.Mfuns.Base"
             android:screenOrientation="portrait"
             android:exported="true"
         />
