@@ -30,7 +30,8 @@
             android:theme="@style/Theme.Mfuns.Base"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -47,11 +48,13 @@
             android:theme="@style/Theme.MaterialComponents"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"
+            android:exported="true"
         />
         <activity
             android:name=".view.PhotoViewActivity"
             android:theme="@style/Theme.Mfuns.Base"
             android:screenOrientation="portrait"
+            android:exported="true"
         />
 
         <!-- Services -->
