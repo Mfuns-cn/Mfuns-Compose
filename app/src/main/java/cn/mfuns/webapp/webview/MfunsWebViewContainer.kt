@@ -117,7 +117,7 @@ class MfunsWebViewContainer(private val activity: MainActivity) {
         }
     }
 
-    fun getView(): View = webView as View
+    fun getView() = webView
 
     fun goBack(): Boolean = if (webView!!.canGoBack()) {
         webView!!.goBack()

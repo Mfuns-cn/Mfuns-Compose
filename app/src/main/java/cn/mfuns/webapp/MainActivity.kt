@@ -84,6 +84,7 @@ class MainActivity : AppCompatActivity() {
     // region View
 
     lateinit var binding: ActivityMainBinding
+    private var currentView = 0
 
     companion object {
         const val VIEW_SPLASH = 0
@@ -91,10 +92,13 @@ class MainActivity : AppCompatActivity() {
         const val VIEW_CUSTOM = 2
     }
 
-    fun useView(view: Int) = binding.apply {
-        splashContainer.visibility = if (view == VIEW_SPLASH) View.VISIBLE else View.GONE
-        webviewContainer.visibility = if (view == VIEW_WEBVIEW) View.VISIBLE else View.INVISIBLE
-        customViewContainer.visibility = if (view == VIEW_CUSTOM) View.VISIBLE else View.INVISIBLE
+    fun useView(view: Int) {
+        currentView = view
+        binding.apply {
+            splashContainer.visibility = if (view == VIEW_SPLASH) View.VISIBLE else View.GONE
+            webviewContainer.visibility = if (view == VIEW_WEBVIEW) View.VISIBLE else View.INVISIBLE
+            customViewContainer.visibility = if (view == VIEW_CUSTOM) View.VISIBLE else View.INVISIBLE
+        }
     }
 
     // endregion
@@ -122,6 +126,7 @@ class MainActivity : AppCompatActivity() {
             finish()
             return
         }
+        if (currentView == VIEW_CUSTOM) webViewContainer.getView()?.webChromeClient!!.onHideCustomView()
         if (webViewContainer.goBack()) return
         val now = System.currentTimeMillis()
         if (now - backPressTime > 2000) {
