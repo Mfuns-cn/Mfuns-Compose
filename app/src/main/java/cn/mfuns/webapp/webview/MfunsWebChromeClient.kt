@@ -6,8 +6,8 @@ import android.net.Uri
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import cn.mfuns.webapp.MainActivity
 import cn.mfuns.webapp.util.AndroidUtil.Companion.setFullscreen
+import cn.mfuns.webapp.view.MainActivity
 import com.tencent.smtt.export.external.interfaces.ConsoleMessage
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient
 import com.tencent.smtt.sdk.MimeTypeMap

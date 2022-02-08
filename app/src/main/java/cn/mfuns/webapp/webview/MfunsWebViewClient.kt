@@ -4,10 +4,10 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 import androidx.preference.PreferenceManager
-import cn.mfuns.webapp.MainActivity
-import cn.mfuns.webapp.PhotoViewActivity
 import cn.mfuns.webapp.R
 import cn.mfuns.webapp.util.Viewer
+import cn.mfuns.webapp.view.MainActivity
+import cn.mfuns.webapp.view.PhotoViewActivity
 import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
 import java.net.URL

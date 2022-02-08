@@ -1,8 +1,7 @@
-package cn.mfuns.webapp
+package cn.mfuns.webapp.view
 
 import android.content.ClipData
 import android.content.ClipboardManager
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -14,6 +13,7 @@ import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
+import cn.mfuns.webapp.R
 import com.ilharper.droidup.DroidUp
 import com.ilharper.droidup.droidUp
 import com.tencent.smtt.sdk.QbSdk
@@ -52,7 +52,7 @@ class SettingsActivity : AppCompatActivity() {
                 Preference.SummaryProvider<Preference> { versionString }
             preferenceVersion.onPreferenceClickListener =
                 Preference.OnPreferenceClickListener {
-                    (requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(
+                    (requireContext().getSystemService(CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(
                         ClipData.newPlainText(
                             requireContext().getText(R.string.settings_version),
                             versionString
@@ -74,7 +74,7 @@ class SettingsActivity : AppCompatActivity() {
                             android.webkit.WebStorage.getInstance().deleteAllData()
                             com.tencent.smtt.sdk.CookieManager.getInstance().removeAllCookies(null)
                             com.tencent.smtt.sdk.WebStorage.getInstance().deleteAllData()
-                            com.tencent.smtt.sdk.QbSdk.clearAllWebViewCache(requireContext(), true)
+                            QbSdk.clearAllWebViewCache(requireContext(), true)
                             Process.killProcess(Process.myPid())
                         }
                         setNegativeButton(R.string.negative, null)

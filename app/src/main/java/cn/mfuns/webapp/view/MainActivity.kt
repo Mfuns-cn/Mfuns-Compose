@@ -1,4 +1,4 @@
-package cn.mfuns.webapp
+package cn.mfuns.webapp.view
 
 import android.content.Intent
 import android.os.Build
@@ -13,6 +13,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
+import cn.mfuns.webapp.R
 import cn.mfuns.webapp.databinding.ActivityMainBinding
 import cn.mfuns.webapp.util.AndroidUtil.Companion.setFullscreen
 import cn.mfuns.webapp.webview.MfunsWebViewContainer

@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.preference.PreferenceManager
-import cn.mfuns.webapp.MainActivity
 import cn.mfuns.webapp.R
+import cn.mfuns.webapp.view.MainActivity
 import com.tencent.smtt.export.external.TbsCoreSettings
 import com.tencent.smtt.sdk.CookieManager
 import com.tencent.smtt.sdk.QbSdk

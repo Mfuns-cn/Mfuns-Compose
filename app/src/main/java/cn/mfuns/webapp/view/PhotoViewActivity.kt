@@ -1,10 +1,11 @@
-package cn.mfuns.webapp
+package cn.mfuns.webapp.view
 
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import cn.mfuns.webapp.R
 import cn.mfuns.webapp.databinding.ActivityPhotoViewBinding
 import cn.mfuns.webapp.util.Viewer
 import java.io.File

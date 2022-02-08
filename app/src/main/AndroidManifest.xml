@@ -25,7 +25,7 @@
         android:hardwareAccelerated="true"
         android:theme="@style/Theme.AppCompat.Light">
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.Mfuns.Base"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -42,14 +42,14 @@
             />
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name=".view.SettingsActivity"
             android:label="@string/settings_title"
             android:theme="@style/Theme.MaterialComponents"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"
         />
         <activity
-            android:name=".PhotoViewActivity"
+            android:name=".view.PhotoViewActivity"
             android:theme="@style/Theme.Mfuns.Base"
             android:screenOrientation="portrait"
         />
