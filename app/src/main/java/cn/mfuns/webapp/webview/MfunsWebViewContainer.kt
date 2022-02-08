@@ -1,6 +1,7 @@
 package cn.mfuns.webapp.webview
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Process
 import android.view.KeyEvent
 import android.view.View
@@ -15,8 +16,16 @@ import com.tencent.smtt.sdk.QbSdk
 import com.tencent.smtt.sdk.WebSettings
 import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.qualifiers.ActivityContext
+import javax.inject.Inject
 
-class MfunsWebViewContainer(private val activity: MainActivity) {
+class MfunsWebViewContainer @Inject constructor(
+    private val activity: MainActivity
+) {
     private var webView: WebView? = null
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -123,4 +132,13 @@ class MfunsWebViewContainer(private val activity: MainActivity) {
         webView!!.goBack()
         true
     } else false
+}
+
+@Module
+@InstallIn(ActivityComponent::class)
+class MfunsWebViewContainerModule {
+    @Provides
+    fun provideMfunsWebViewContainer(
+        @ActivityContext context: Context
+    ) = MfunsWebViewContainer(context as MainActivity)
 }

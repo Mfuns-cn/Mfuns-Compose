@@ -19,10 +19,15 @@ import cn.mfuns.webapp.util.AndroidUtil.Companion.setFullscreen
 import cn.mfuns.webapp.webview.MfunsWebViewContainer
 import com.ilharper.droidup.DroidUp
 import com.ilharper.droidup.droidUp
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private var isInitialized = false
-    private lateinit var webViewContainer: MfunsWebViewContainer
+
+    @Inject
+    lateinit var webViewContainer: MfunsWebViewContainer
 
     // region File Chooser
 
@@ -50,7 +55,6 @@ class MainActivity : AppCompatActivity() {
 
         // Load WebView
         Handler(Looper.getMainLooper()).postDelayed({
-            webViewContainer = MfunsWebViewContainer(this)
             webViewContainer.initialize(this::initializeWebView)
         }, 100)
     }
