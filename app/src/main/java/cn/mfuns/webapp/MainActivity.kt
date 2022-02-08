@@ -6,13 +6,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import android.widget.ImageView
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
+import cn.mfuns.webapp.databinding.ActivityMainBinding
 import cn.mfuns.webapp.util.AndroidUtil.Companion.setFullscreen
 import cn.mfuns.webapp.webview.MfunsWebViewContainer
 import com.ilharper.droidup.DroidUp
@@ -42,11 +43,9 @@ class MainActivity : AppCompatActivity() {
         // Adapt to full screen
         window.setFullscreen(true)
 
-        // Load Splash Image
-        val image = ImageView(this)
-        image.setImageResource(R.mipmap.splash)
-        image.scaleType = ImageView.ScaleType.CENTER_CROP
-        setContentView(image)
+        // Bind view
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // Load WebView
         Handler(Looper.getMainLooper()).postDelayed({
@@ -63,7 +62,14 @@ class MainActivity : AppCompatActivity() {
         updateTheme()
 
         // Use WebView
-        setContentView(webViewContainer.getView())
+        binding.webviewContainer.addView(
+            webViewContainer.getView(),
+            ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
+        useView(VIEW_WEBVIEW)
 
         // Check Update
         Handler(Looper.getMainLooper()).postDelayed({
@@ -74,6 +80,24 @@ class MainActivity : AppCompatActivity() {
 
         isInitialized = true
     }
+
+    // region View
+
+    lateinit var binding: ActivityMainBinding
+
+    companion object {
+        const val VIEW_SPLASH = 0
+        const val VIEW_WEBVIEW = 1
+        const val VIEW_CUSTOM = 2
+    }
+
+    fun useView(view: Int) = binding.apply {
+        splashContainer.visibility = if (view == VIEW_SPLASH) View.VISIBLE else View.GONE
+        webviewContainer.visibility = if (view == VIEW_WEBVIEW) View.VISIBLE else View.INVISIBLE
+        customViewContainer.visibility = if (view == VIEW_CUSTOM) View.VISIBLE else View.INVISIBLE
+    }
+
+    // endregion
 
     private fun updateTheme() {
         if (
