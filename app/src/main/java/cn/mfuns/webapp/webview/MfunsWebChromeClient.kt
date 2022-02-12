@@ -1,12 +1,9 @@
 package cn.mfuns.webapp.webview
 
-import android.annotation.SuppressLint
-import android.content.pm.ActivityInfo
 import android.net.Uri
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import cn.mfuns.webapp.util.AndroidUtil.Companion.setFullscreen
 import cn.mfuns.webapp.view.MainActivity
 import com.tencent.smtt.export.external.interfaces.ConsoleMessage
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient
@@ -59,15 +56,10 @@ class MfunsWebChromeClient(private val activity: MainActivity) : WebChromeClient
 
     // region Custom View
 
-    @SuppressLint("SourceLockedOrientationActivity")
     override fun onHideCustomView() {
         activity.apply {
             binding.customViewContainer.removeAllViews()
             useView(MainActivity.VIEW_WEBVIEW)
-
-            // Disable fullscreen
-            window.setFullscreen(false)
-            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         }
     }
 
@@ -81,11 +73,7 @@ class MfunsWebChromeClient(private val activity: MainActivity) : WebChromeClient
                     ViewGroup.LayoutParams.MATCH_PARENT
                 )
             )
-            useView(MainActivity.VIEW_CUSTOM)
-
-            // Enable fullscreen
-            window.setFullscreen(true, true)
-            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+            useView(MainActivity.VIEW_FULLSCREEN)
         }
     }
 

@@ -1,6 +1,8 @@
 package cn.mfuns.webapp.view
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -24,8 +26,6 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private var isInitialized = false
-
     @Inject
     lateinit var webViewContainer: MfunsWebViewContainer
 
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        window.decorView.setOnSystemUiVisibilityChangeListener { if (isInitialized) updateTheme() }
+        window.decorView.setOnSystemUiVisibilityChangeListener { ensureView() }
 
         // Adapt to full screen
         window.setFullscreen(true)
@@ -53,19 +53,20 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        useView(VIEW_SPLASH)
+
         // Load WebView
         Handler(Looper.getMainLooper()).postDelayed({
             webViewContainer.initialize(this::initializeWebView)
         }, 100)
     }
 
+    override fun onResume() {
+        super.onResume()
+        ensureView()
+    }
+
     private fun initializeWebView() {
-        // Disable Fullscreen
-        window.setFullscreen(false)
-
-        // Change Theme
-        updateTheme()
-
         // Use WebView
         binding.webviewContainer.addView(
             webViewContainer.getView(),
@@ -82,8 +83,6 @@ class MainActivity : AppCompatActivity() {
                 useSimpleChecker("https://app.mfuns.cn/releases")
             })).check()
         }, 1000)
-
-        isInitialized = true
     }
 
     // region View
@@ -94,15 +93,33 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val VIEW_SPLASH = 0
         const val VIEW_WEBVIEW = 1
-        const val VIEW_CUSTOM = 2
+        const val VIEW_FULLSCREEN = 2
     }
 
     fun useView(view: Int) {
         currentView = view
+        ensureView()
+    }
+
+    @SuppressLint("SourceLockedOrientationActivity")
+    private fun ensureView() {
         binding.apply {
-            splashContainer.visibility = if (view == VIEW_SPLASH) View.VISIBLE else View.GONE
-            webviewContainer.visibility = if (view == VIEW_WEBVIEW) View.VISIBLE else View.INVISIBLE
-            customViewContainer.visibility = if (view == VIEW_CUSTOM) View.VISIBLE else View.INVISIBLE
+            splashContainer.visibility = if (currentView == VIEW_SPLASH) View.VISIBLE else View.GONE
+            webviewContainer.visibility = if (currentView == VIEW_WEBVIEW) View.VISIBLE else View.INVISIBLE
+            customViewContainer.visibility = if (currentView == VIEW_FULLSCREEN) View.VISIBLE else View.INVISIBLE
+        }
+
+        when (currentView) {
+            VIEW_WEBVIEW -> {
+                window.setFullscreen(false)
+                updateTheme()
+                requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+            }
+            VIEW_FULLSCREEN -> {
+                window.setFullscreen(true, true)
+                updateTheme()
+                requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+            }
         }
     }
 
@@ -115,23 +132,25 @@ class MainActivity : AppCompatActivity() {
         ) {
             window.statusBarColor = -14342349 // 0xff252733.toInt()
             window.navigationBarColor = -14671064 // 0xff202328.toInt()
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LOW_PROFILE
+            window.decorView.systemUiVisibility =
+                (window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LOW_PROFILE)
         } else {
             window.statusBarColor = -8945669 // 0xff777ffb.toInt()
             window.navigationBarColor = -1 // 0xffffffff.toInt()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                window.decorView.systemUiVisibility =
+                    (window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR)
         }
     }
 
     private var backPressTime: Long = -2500
 
     override fun onBackPressed() {
-        if (!isInitialized) {
+        if (currentView == VIEW_SPLASH) {
             finish()
             return
         }
-        if (currentView == VIEW_CUSTOM) webViewContainer.getView()?.webChromeClient!!.onHideCustomView()
+        if (currentView == VIEW_FULLSCREEN) webViewContainer.getView()?.webChromeClient!!.onHideCustomView()
         if (webViewContainer.goBack()) return
         val now = System.currentTimeMillis()
         if (now - backPressTime > 2000) {
