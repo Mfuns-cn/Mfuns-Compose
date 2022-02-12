@@ -2,6 +2,7 @@ package cn.mfuns.webapp.webview
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
 import android.os.Process
 import android.view.KeyEvent
 import android.view.View
@@ -89,6 +90,21 @@ class MfunsWebViewContainer @Inject constructor(
                         !PreferenceManager.getDefaultSharedPreferences(activity)
                             .getBoolean("settings_display_night_mode", false)
                     )
+
+                    // region Scroll
+
+                    setVerticalTrackDrawable(null)
+                    setHorizontalTrackDrawable(null)
+                    isVerticalScrollBarEnabled = false
+                    isHorizontalScrollBarEnabled = false
+                    setVerticalScrollBarDrawable(null)
+                    setHorizontalScrollBarDrawable(null)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        verticalScrollbarTrackDrawable = null
+                        horizontalScrollbarTrackDrawable = null
+                    }
+
+                    // endregion
                 }
             }
 
