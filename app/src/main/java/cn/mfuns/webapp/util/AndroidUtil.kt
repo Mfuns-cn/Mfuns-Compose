@@ -49,9 +49,6 @@ class AndroidUtil {
                             WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
             } else {
                 decorView.systemUiVisibility = 0
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P)
-                    attributes.layoutInDisplayCutoutMode =
-                        WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER
             }
         }
     }
