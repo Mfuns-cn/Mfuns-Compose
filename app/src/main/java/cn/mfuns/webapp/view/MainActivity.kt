@@ -145,18 +145,41 @@ class MainActivity : AppCompatActivity() {
 
     private var backPressTime: Long = -2500
 
+    /**
+     * 按键返回的实现。
+     */
     override fun onBackPressed() {
+        // 如果当前视图状态为 VIEW_SPLASH，则主活动尚未完成加载
         if (currentView == VIEW_SPLASH) {
+            // 结束活动
+            // 活动立即退出，用户返回启动器
             finish()
+            // 结束判断
             return
         }
-        if (currentView == VIEW_FULLSCREEN) webViewContainer.getView()?.webChromeClient!!.onHideCustomView()
+
+        // 如果当前视图状态为 VIEW_FULLSCREEN，则正在全屏播放视频
+        if (currentView == VIEW_FULLSCREEN) {
+            // 关闭全屏
+            webViewContainer.getView()?.webChromeClient!!.onHideCustomView()
+            // 结束判断
+            return
+        }
+
+        // 当前视图状态一定为 VIEW_WEBVIEW，正常显示网页
+        // 如果当前网页可返回，则返回并结束判断
         if (webViewContainer.goBack()) return
+
+        // 由双击返回处理
         val now = System.currentTimeMillis()
+        // 若双击时间大于 2s，则判定为首次按下
         if (now - backPressTime > 2000) {
             backPressTime = now
             Toast.makeText(this, R.string.back_press_prompt, Toast.LENGTH_SHORT).show()
-        } else finish()
+        }
+        // 否则直接结束活动
+        // 活动立即退出，用户返回启动器
+        else finish()
     }
 
     override fun onDestroy() {
