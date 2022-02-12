@@ -13,10 +13,17 @@ import com.tencent.smtt.sdk.WebViewClient
 import java.net.URL
 
 class MfunsWebViewClient(private val activity: MainActivity) : WebViewClient() {
+    companion object {
+        private val protocolWhitelist = listOf(
+            "mqqopensdkapi", // App下载 - 加群链接
+            "mqqwpa", // 客服
+            "tbopen" // 广告 - 淘宝
+        )
+    }
+
     override fun shouldOverrideUrlLoading(v: WebView?, url: String): Boolean {
         try {
-            // Intercept mqqopensdkapi/mqqwpa
-            if (url.contains("mqqopensdkapi") or url.contains("mqqwpa")) {
+            if (protocolWhitelist.any { x -> url.startsWith(x) }) {
                 try {
                     activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
                 } catch (e: Exception) {
