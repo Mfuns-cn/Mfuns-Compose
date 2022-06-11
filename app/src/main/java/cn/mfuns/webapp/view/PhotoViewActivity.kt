@@ -56,7 +56,7 @@ class PhotoViewActivity : AppCompatActivity() {
             { f ->
                 file = f
                 binding.photoView.setImageURI(file.first)
-                binding.loadingBar.isIndeterminate = false
+                binding.loaded = true
             },
             {
                 Toast.makeText(this, R.string.viewer_download_failed, Toast.LENGTH_SHORT).show()
