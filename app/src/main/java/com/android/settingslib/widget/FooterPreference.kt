@@ -14,7 +14,7 @@ import androidx.preference.PreferenceViewHolder
 import cn.mfuns.webapp.R
 
 class FooterPreference @JvmOverloads constructor(
-    context: Context?,
+    context: Context,
     attrs: AttributeSet? = null
 ) :
     Preference(context, attrs, R.style.Preference_Material) {
@@ -51,13 +51,13 @@ class FooterPreference @JvmOverloads constructor(
         }
     }
 
-    override fun setSummary(summary: CharSequence) {
+    override fun setSummary(summary: CharSequence?) {
         title = summary
     }
 
     override fun setSummary(summaryResId: Int) = setTitle(summaryResId)
 
-    override fun getSummary(): CharSequence = title
+    override fun getSummary(): CharSequence? = title
 
     /**
      * Return the content description of footer preference.
