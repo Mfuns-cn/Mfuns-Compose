@@ -36,7 +36,6 @@ def getVersionName = { ->
 
 android {
     compileSdkVersion 31
-    buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "cn.mfuns.webapp"
