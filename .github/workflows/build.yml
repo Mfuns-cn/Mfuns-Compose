@@ -26,12 +26,12 @@ jobs:
       run: gradle build
 
     - name: Sign App APK
-      uses: r0adkll/sign-android-release@v1
+      uses: ilharp/sign-android-release@dist
       id: sign_app
       with:
-        releaseDirectory: app/build/outputs/apk/release
-        signingKeyBase64: ${{ fromJson(secrets.ANDROID_KEY).key }}
-        alias: ${{ fromJson(secrets.ANDROID_KEY).alias }}
+        releaseDir: app/build/outputs/apk/release
+        signingKey: ${{ fromJson(secrets.ANDROID_KEY).key }}
+        keyAlias: ${{ fromJson(secrets.ANDROID_KEY).alias }}
         keyStorePassword: ${{ fromJson(secrets.ANDROID_KEY).password }}
         keyPassword: ${{ fromJson(secrets.ANDROID_KEY).password }}
 
@@ -39,4 +39,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: mfuns-webapp-${{ github.sha }}
-        path: ${{steps.sign_app.outputs.signedReleaseFile}}
+        path: ${{steps.sign_app.outputs.signedFile}}
