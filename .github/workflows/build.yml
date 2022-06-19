@@ -34,10 +34,10 @@ jobs:
       id: sign_app
       with:
         releaseDir: app/build/outputs/apk/release
-        signingKey: ${{ fromJson(secrets.ANDROID_KEY).key }}
-        keyAlias: ${{ fromJson(secrets.ANDROID_KEY).alias }}
-        keyStorePassword: ${{ fromJson(secrets.ANDROID_KEY).password }}
-        keyPassword: ${{ fromJson(secrets.ANDROID_KEY).password }}
+        signingKey: ${{ secrets.ANDROID_SIGNING_KEY }}
+        keyAlias: mfuns-rev0
+        keyStorePassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
 
     - name: Push Artifacts
       uses: actions/upload-artifact@v2
