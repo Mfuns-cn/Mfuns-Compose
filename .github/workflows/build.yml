@@ -25,8 +25,8 @@ jobs:
 
     - name: Add Mask for Secrets
       run: |
-        ::add-mask::${{ fromJson(secrets.ANDROID_KEY).key }}
-        ::add-mask::${{ fromJson(secrets.ANDROID_KEY).password }}
+        echo '::add-mask::${{ fromJson(secrets.ANDROID_KEY).key }}'
+        echo '::add-mask::${{ fromJson(secrets.ANDROID_KEY).password }}'
 
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
