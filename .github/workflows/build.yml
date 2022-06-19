@@ -16,11 +16,18 @@ jobs:
       with:
           submodules: recursive
           fetch-depth: 0
+
     - name: Set-up JDK 11
       uses: actions/setup-java@v2
       with:
         distribution: 'temurin'
         java-version: '11'
+
+    - name: Add Mask for Secrets
+      run: |
+        ::add-mask::${{ fromJson(secrets.ANDROID_KEY).key }}
+        ::add-mask::${{ fromJson(secrets.ANDROID_KEY).password }}
+
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
 
