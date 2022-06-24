@@ -203,7 +203,8 @@ class FooterPreference @JvmOverloads constructor(
             require(!TextUtils.isEmpty(mTitle)) { "Footer title cannot be empty!" }
             footerPreference.title = mTitle
             if (!TextUtils.isEmpty(mKey)) footerPreference.key = mKey
-            if (!TextUtils.isEmpty(mContentDescription)) footerPreference.contentDescription = mContentDescription
+            if (!TextUtils.isEmpty(mContentDescription)) footerPreference.contentDescription =
+                mContentDescription
             if (!TextUtils.isEmpty(mLearnMoreContentDescription)) {
                 footerPreference.learnMoreContentDescription = mLearnMoreContentDescription
             }

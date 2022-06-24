@@ -9,11 +9,12 @@
         android:id="@+id/splash_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@mipmap/splash"
             android:scaleType="centerCrop"
+            android:src="@mipmap/splash"
             tools:ignore="ContentDescription"
         />
     </RelativeLayout>

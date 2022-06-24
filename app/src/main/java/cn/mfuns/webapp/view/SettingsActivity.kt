@@ -49,7 +49,8 @@ class SettingsActivity : AppCompatActivity() {
                     true
                 }
 
-            val version = requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
+            val version =
+                requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
             val versionString = "${version.versionName} (${version.versionCode})"
             val preferenceVersion = findPreference<Preference>("settings_version")
             preferenceVersion!!.summaryProvider =
@@ -62,7 +63,8 @@ class SettingsActivity : AppCompatActivity() {
                             versionString
                         )
                     )
-                    Toast.makeText(requireContext(), R.string.settings_copied, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), R.string.settings_copied, Toast.LENGTH_SHORT)
+                        .show()
                     true
                 }
 
@@ -102,9 +104,18 @@ class SettingsActivity : AppCompatActivity() {
             preferenceGroup!!.onPreferenceClickListener =
                 Preference.OnPreferenceClickListener {
                     try {
-                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.settings_group_uri))))
+                        startActivity(
+                            Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse(getString(R.string.settings_group_uri))
+                            )
+                        )
                     } catch (e: Exception) {
-                        Toast.makeText(requireContext(), R.string.settings_group_join_failed, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.settings_group_join_failed,
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                     true
                 }

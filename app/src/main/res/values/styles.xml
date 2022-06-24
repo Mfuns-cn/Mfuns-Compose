@@ -1,4 +1,5 @@
 <resources>
+
     <style
         name="TextAppearance.Footer.Title.SettingsLib"
         parent="@android:style/TextAppearance.DeviceDefault.WindowTitle">

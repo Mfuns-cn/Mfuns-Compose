@@ -109,8 +109,10 @@ class MainActivity : AppCompatActivity() {
     private fun ensureView() {
         binding.apply {
             splashContainer.visibility = if (currentView == VIEW_SPLASH) View.VISIBLE else View.GONE
-            webviewContainer.visibility = if (currentView == VIEW_WEBVIEW) View.VISIBLE else View.INVISIBLE
-            customViewContainer.visibility = if (currentView == VIEW_FULLSCREEN) View.VISIBLE else View.INVISIBLE
+            webviewContainer.visibility =
+                if (currentView == VIEW_WEBVIEW) View.VISIBLE else View.INVISIBLE
+            customViewContainer.visibility =
+                if (currentView == VIEW_FULLSCREEN) View.VISIBLE else View.INVISIBLE
         }
 
         when (currentView) {

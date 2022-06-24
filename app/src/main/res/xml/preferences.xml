@@ -18,8 +18,8 @@
             app:title="@string/settings_clear_data"
         />
         <Preference
-            app:key="tbs_version"
             app:enabled="false"
+            app:key="tbs_version"
             app:title="@string/settings_webview_tbs_version"
         />
     </PreferenceCategory>
@@ -27,11 +27,11 @@
         app:key="settings_viewer"
         app:title="@string/settings_viewer">
         <ListPreference
-            app:key="settings_viewer_default_action"
-            app:title="@string/settings_viewer_default_action"
             app:defaultValue="@string/settings_viewer_action_open_internal"
             app:entries="@array/settings_viewer_action_list"
             app:entryValues="@array/settings_viewer_action_list"
+            app:key="settings_viewer_default_action"
+            app:title="@string/settings_viewer_default_action"
         />
     </PreferenceCategory>
     <PreferenceCategory
@@ -43,8 +43,8 @@
         />
         <Preference
             app:key="settings_group"
-            app:title="@string/settings_group"
             app:summary="@string/settings_group_summary"
+            app:title="@string/settings_group"
         />
         <Preference
             app:key="settings_version"

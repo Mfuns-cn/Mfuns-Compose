@@ -37,8 +37,9 @@ class Viewer {
                     if (queue == null) queue = Volley.newRequestQueue(applicationContext)
                     val request = DownloadRequest(url, { response ->
                         file.writeBytes(response)
-                        val uri = FileProvider.getUriForFile(this, "cn.mfuns.webapp.viewerprovider", file)
-                            ?: return@DownloadRequest failed()
+                        val uri =
+                            FileProvider.getUriForFile(this, "cn.mfuns.webapp.viewerprovider", file)
+                                ?: return@DownloadRequest failed()
                         completed(Triple(uri, filename, file))
                     }) { failed() }
 
@@ -61,7 +62,8 @@ class Viewer {
         ) {
             saveIntl(activity, file, filename).apply {
                 if (this == null) {
-                    Toast.makeText(activity, R.string.viewer_download_failed, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, R.string.viewer_download_failed, Toast.LENGTH_SHORT)
+                        .show()
                 } else {
                     Toast.makeText(
                         activity,

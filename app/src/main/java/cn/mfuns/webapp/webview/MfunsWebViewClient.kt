@@ -27,7 +27,11 @@ class MfunsWebViewClient(private val activity: MainActivity) : WebViewClient() {
                 try {
                     activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
                 } catch (e: Exception) {
-                    Toast.makeText(activity, R.string.settings_group_join_failed, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        activity,
+                        R.string.settings_group_join_failed,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
                 return true
             }
@@ -58,7 +62,11 @@ class MfunsWebViewClient(private val activity: MainActivity) : WebViewClient() {
                                 url,
                                 { f -> Viewer.open(this, f.first) },
                                 {
-                                    Toast.makeText(this, R.string.viewer_download_failed, Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(
+                                        this,
+                                        R.string.viewer_download_failed,
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                     finish()
                                 }
                             )
@@ -69,7 +77,11 @@ class MfunsWebViewClient(private val activity: MainActivity) : WebViewClient() {
                                 url,
                                 { f -> Viewer.save(this, f.third, f.second) },
                                 {
-                                    Toast.makeText(this, R.string.viewer_download_failed, Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(
+                                        this,
+                                        R.string.viewer_download_failed,
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                     finish()
                                 }
                             )

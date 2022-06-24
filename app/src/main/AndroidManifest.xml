@@ -19,21 +19,22 @@
     <application
         android:name=".MfunsWebApp"
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:usesCleartextTraffic="true"
-        android:hardwareAccelerated="true"
-        android:theme="@style/Theme.Mfuns.Base">
+        android:theme="@style/Theme.Mfuns.Base"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".view.MainActivity"
-            android:label="@string/app_name"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait"
+            android:exported="true"
+            android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:exported="true">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -44,24 +45,24 @@
         </activity>
         <activity
             android:name=".view.SettingsActivity"
-            android:label="@string/settings_title"
-            android:theme="@style/Theme.MaterialComponents"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTask"
             android:exported="true"
+            android:label="@string/settings_title"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MaterialComponents"
         />
         <activity
             android:name=".view.PhotoViewActivity"
-            android:screenOrientation="portrait"
             android:exported="true"
+            android:screenOrientation="portrait"
         />
 
         <!-- Services -->
         <service
             android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
             android:label="dexopt"
-            android:process=":dexopt">
-        </service>
+            android:process=":dexopt"
+        />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -71,8 +72,8 @@
         <provider
             android:name=".util.ViewerProvider"
             android:authorities="${applicationId}.viewerprovider"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths"
