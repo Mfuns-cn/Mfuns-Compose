@@ -19,8 +19,8 @@ import cn.mfuns.webapp.R
 import cn.mfuns.webapp.databinding.ActivityMainBinding
 import cn.mfuns.webapp.util.AndroidUtil.Companion.setFullscreen
 import cn.mfuns.webapp.webview.MfunsWebViewContainer
-import com.ilharper.droidup.DroidUp
-import com.ilharper.droidup.droidUp
+import com.ilharper.str4j.android.distrib.StrUpdate
+import com.ilharper.str4j.android.distrib.strUpdate
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -79,9 +79,9 @@ class MainActivity : AppCompatActivity() {
 
         // Check Update
         Handler(Looper.getMainLooper()).postDelayed({
-            DroidUp.default = (
-                DroidUp.default ?: (
-                    droidUp {
+            StrUpdate.default = (
+                StrUpdate.default ?: (
+                    strUpdate {
                         useSimpleChecker("https://app.mfuns.cn/releases")
                     }
                     )

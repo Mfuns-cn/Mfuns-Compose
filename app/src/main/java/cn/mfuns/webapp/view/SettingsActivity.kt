@@ -14,8 +14,8 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import cn.mfuns.webapp.R
-import com.ilharper.droidup.DroidUp
-import com.ilharper.droidup.droidUp
+import com.ilharper.str4j.android.distrib.StrUpdate
+import com.ilharper.str4j.android.distrib.strUpdate
 import com.tencent.smtt.sdk.QbSdk
 
 class SettingsActivity : AppCompatActivity() {
@@ -39,9 +39,9 @@ class SettingsActivity : AppCompatActivity() {
             val preferenceUpdate = findPreference<Preference>("settings_update")
             preferenceUpdate!!.onPreferenceClickListener =
                 Preference.OnPreferenceClickListener {
-                    DroidUp.default = (
-                        DroidUp.default ?: (
-                            droidUp {
+                    StrUpdate.default = (
+                        StrUpdate.default ?: (
+                            strUpdate {
                                 useSimpleChecker("https://app.mfuns.cn/releases")
                             }
                             )
