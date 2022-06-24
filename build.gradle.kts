@@ -16,7 +16,7 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven { url = "https://maven.ilharper.com" }
+        maven { url = uri("https://maven.ilharper.com") }
     }
 }
 
