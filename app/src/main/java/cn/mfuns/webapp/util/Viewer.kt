@@ -49,8 +49,9 @@ class Viewer {
         }
 
         fun open(activity: Activity, uri: Uri) {
-            if (!openIntl(activity, uri))
+            if (!openIntl(activity, uri)) {
                 Toast.makeText(activity, R.string.viewer_download_failed, Toast.LENGTH_SHORT).show()
+            }
         }
 
         fun save(
@@ -59,14 +60,15 @@ class Viewer {
             filename: String
         ) {
             saveIntl(activity, file, filename).apply {
-                if (this == null)
+                if (this == null) {
                     Toast.makeText(activity, R.string.viewer_download_failed, Toast.LENGTH_SHORT).show()
-                else
+                } else {
                     Toast.makeText(
                         activity,
                         activity.getString(R.string.viewer_download_completed, this),
                         Toast.LENGTH_SHORT
                     ).show()
+                }
             }
         }
 
@@ -123,9 +125,11 @@ class Viewer {
                 }
             } else {
                 // Use ExternalStorages
-                val path = (Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).path
-                    + "/Mfuns/"
-                    + filename)
+                val path = (
+                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).path +
+                        "/Mfuns/" +
+                        filename
+                    )
                 file.copyTo(
                     File(path).apply { if (!exists()) createNewFile() },
                     true

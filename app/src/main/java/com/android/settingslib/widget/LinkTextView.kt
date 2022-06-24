@@ -11,7 +11,8 @@ class LinkTextView @JvmOverloads constructor(
     context: Context?,
     attrs: AttributeSet? = null
 ) : AppCompatTextView(
-    context!!, attrs
+    context!!,
+    attrs
 ) {
     override fun setText(text: CharSequence, type: BufferType) {
         super.setText(text, type)

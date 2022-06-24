@@ -41,10 +41,12 @@ class MfunsWebViewClient(private val activity: MainActivity) : WebViewClient() {
             if (Viewer.parseExt(path) != null) {
                 // Use Viewer
                 activity.apply {
-                    when (PreferenceManager.getDefaultSharedPreferences(this).getString(
-                        "settings_viewer_default_action",
-                        resources.getStringArray(R.array.settings_viewer_action_list)[0]
-                    )) {
+                    when (
+                        PreferenceManager.getDefaultSharedPreferences(this).getString(
+                            "settings_viewer_default_action",
+                            resources.getStringArray(R.array.settings_viewer_action_list)[0]
+                        )
+                    ) {
                         resources.getStringArray(R.array.settings_viewer_action_list)[0] -> {
                             val intent = Intent(this, PhotoViewActivity::class.java)
                             intent.putExtra("url", path)

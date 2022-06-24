@@ -77,10 +77,10 @@ class MfunsWebViewContainer @Inject constructor(
                 saveFormData = true
                 userAgentString =
                     "Mfuns-WebApp/${
-                        activity.packageManager.getPackageInfo(
-                            activity.packageName,
-                            0
-                        ).versionName
+                    activity.packageManager.getPackageInfo(
+                        activity.packageName,
+                        0
+                    ).versionName
                     } $userAgentString"
             }
 

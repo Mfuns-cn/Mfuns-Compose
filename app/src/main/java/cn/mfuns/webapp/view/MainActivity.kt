@@ -79,9 +79,13 @@ class MainActivity : AppCompatActivity() {
 
         // Check Update
         Handler(Looper.getMainLooper()).postDelayed({
-            DroidUp.default = (DroidUp.default ?: (droidUp {
-                useSimpleChecker("https://app.mfuns.cn/releases")
-            })).check()
+            DroidUp.default = (
+                DroidUp.default ?: (
+                    droidUp {
+                        useSimpleChecker("https://app.mfuns.cn/releases")
+                    }
+                    )
+                ).check()
         }, 1000)
     }
 
@@ -137,9 +141,10 @@ class MainActivity : AppCompatActivity() {
         } else {
             window.statusBarColor = -8945669 // 0xff777ffb.toInt()
             window.navigationBarColor = -1 // 0xffffffff.toInt()
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 window.decorView.systemUiVisibility =
                     (window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR)
+            }
         }
     }
 

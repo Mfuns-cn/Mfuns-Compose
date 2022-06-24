@@ -39,9 +39,13 @@ class SettingsActivity : AppCompatActivity() {
             val preferenceUpdate = findPreference<Preference>("settings_update")
             preferenceUpdate!!.onPreferenceClickListener =
                 Preference.OnPreferenceClickListener {
-                    DroidUp.default = (DroidUp.default ?: (droidUp {
-                        useSimpleChecker("https://app.mfuns.cn/releases")
-                    })).check(manual = true)
+                    DroidUp.default = (
+                        DroidUp.default ?: (
+                            droidUp {
+                                useSimpleChecker("https://app.mfuns.cn/releases")
+                            }
+                            )
+                        ).check(manual = true)
                     true
                 }
 

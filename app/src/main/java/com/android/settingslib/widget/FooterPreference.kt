@@ -30,8 +30,9 @@ class FooterPreference @JvmOverloads constructor(
             movementMethod = LinkMovementMethod()
             isClickable = false
             isLongClickable = false
-            if (!TextUtils.isEmpty(mContentDescription))
+            if (!TextUtils.isEmpty(mContentDescription)) {
                 contentDescription = mContentDescription
+            }
         }
 
         holder.itemView.findViewById<LinkTextView>(R.id.settingslib_learn_more).apply {
@@ -39,15 +40,18 @@ class FooterPreference @JvmOverloads constructor(
                 visibility = View.VISIBLE
                 val learnMoreText = SpannableString(text)
                 learnMoreText.setSpan(
-                    FooterLearnMoreSpan(mLearnMoreListener), 0,
-                    learnMoreText.length, 0
+                    FooterLearnMoreSpan(mLearnMoreListener),
+                    0,
+                    learnMoreText.length,
+                    0
                 )
                 text = learnMoreText
                 if (!TextUtils.isEmpty(mLearnMoreContentDescription)) {
                     contentDescription = mLearnMoreContentDescription
                 }
-            } else
+            } else {
                 visibility = View.GONE
+            }
         }
     }
 
@@ -200,8 +204,9 @@ class FooterPreference @JvmOverloads constructor(
             footerPreference.title = mTitle
             if (!TextUtils.isEmpty(mKey)) footerPreference.key = mKey
             if (!TextUtils.isEmpty(mContentDescription)) footerPreference.contentDescription = mContentDescription
-            if (!TextUtils.isEmpty(mLearnMoreContentDescription))
+            if (!TextUtils.isEmpty(mLearnMoreContentDescription)) {
                 footerPreference.learnMoreContentDescription = mLearnMoreContentDescription
+            }
             return footerPreference
         }
     }
@@ -209,9 +214,9 @@ class FooterPreference @JvmOverloads constructor(
     /**
      * A [URLSpan] that opens a support page when clicked
      */
-    internal class FooterLearnMoreSpan     // sets the url to empty string so we can prevent any other span processing from
+    internal class FooterLearnMoreSpan // sets the url to empty string so we can prevent any other span processing from
     // clearing things we need in this string.
-        (private val mClickListener: View.OnClickListener?) : URLSpan("") {
+    (private val mClickListener: View.OnClickListener?) : URLSpan("") {
         override fun onClick(widget: View) {
             mClickListener?.onClick(widget)
         }
