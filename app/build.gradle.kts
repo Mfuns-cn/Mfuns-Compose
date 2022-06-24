@@ -78,17 +78,20 @@ kapt {
 
 dependencies {
 
-    implementation("androidx.appcompat:appcompat:1.4.1")
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.preference:preference-ktx:1.2.0")
-    implementation("com.android.volley:volley:1.2.1")
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.preference)
+    implementation(libs.androidx.constraintlayout)
 
-    implementation("com.google.dagger:hilt-android:2.42")
-    kapt("com.google.dagger:hilt-compiler:2.42")
+    implementation(libs.google.android.material)
 
-    implementation("com.github.chrisbanes:PhotoView:2.3.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("com.github.castorflex.smoothprogressbar:library-circular:1.3.0")
-    api("com.tencent.tbs:tbssdk:44181")
-    implementation("com.ilharper:droidup:0.1.5")
+    implementation(libs.android.volley)
+
+    implementation(libs.dagger.hilt.android)
+    kapt(libs.dagger.hilt.compiler)
+
+    implementation(libs.github.chrisbanes.photoview)
+    implementation(libs.github.castorflex.smoothprogressbar)
+
+    api(libs.tencent.tbs)
+
 }
