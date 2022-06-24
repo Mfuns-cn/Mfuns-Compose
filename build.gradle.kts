@@ -1,9 +1,9 @@
 buildscript {
-    ext.kotlin_version = "1.7.0"
     repositories {
         google()
         mavenCentral()
     }
+
     dependencies {
         classpath(libs.android.gradle)
         classpath(libs.kotlin.gradle)

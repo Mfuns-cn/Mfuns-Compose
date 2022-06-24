@@ -17,6 +17,7 @@ val getVersionCode = {
         1
     }
 }
+
 val getVersionName = {
     try {
         val out = ByteArrayOutputStream()
@@ -39,8 +40,10 @@ android {
 
     defaultConfig {
         applicationId("cn.mfuns.webapp")
+
         minSdkVersion(25)
         targetSdkVersion(25)
+
         versionCode = gitVersionCode
         versionName = gitVersionName
 
