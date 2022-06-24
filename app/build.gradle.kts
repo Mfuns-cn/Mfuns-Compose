@@ -94,4 +94,6 @@ dependencies {
 
     api(libs.tencent.tbs)
 
+    implementation(libs.ilharper.str4j.android)
+
 }
