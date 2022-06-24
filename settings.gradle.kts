@@ -14,7 +14,7 @@ dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
             library("android-gradle", "com.android.tools.build", "gradle").version("7.2.1")
-            library("kotlin-gradle", "org.jetbrains.kotlin", "kotlin-gradle-plugin").version("1.7.0")
+            library("kotlin-gradle", "org.jetbrains.kotlin", "kotlin-gradle-plugin").version("1.6.21")
             library("spotless", "com.diffplug.spotless", "spotless-plugin-gradle").version("6.7.2")
 
             library("android-desugar", "com.android.tools", "desugar_jdk_libs").version("1.1.5")

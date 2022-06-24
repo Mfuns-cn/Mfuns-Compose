@@ -57,6 +57,12 @@ android {
         }
     }
 
+    buildFeatures {
+        compose = true
+        viewBinding = true
+        dataBinding = true
+    }
+
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
 
@@ -68,10 +74,8 @@ android {
         jvmTarget = "1.8"
     }
 
-    buildFeatures {
-        compose = true
-        viewBinding = true
-        dataBinding = true
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.2.0-beta03"
     }
 }
 
