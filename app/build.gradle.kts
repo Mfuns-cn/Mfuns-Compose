@@ -46,8 +46,6 @@ android {
 
         versionCode = gitVersionCode
         versionName = gitVersionName
-
-        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
