@@ -17,6 +17,8 @@ dependencyResolutionManagement {
             library("kotlin-gradle", "org.jetbrains.kotlin", "kotlin-gradle-plugin").version("1.7.0")
             library("spotless", "com.diffplug.spotless", "spotless-plugin-gradle").version("6.7.2")
 
+            library("android-desugar", "com.android.tools", "desugar_jdk_libs").version("1.1.5")
+
             library("dagger-hilt-gradle", "com.google.dagger", "hilt-android-gradle-plugin").version("2.42")
             library("dagger-hilt-android", "com.google.dagger", "hilt-android").version("2.42")
             library("dagger-hilt-compiler", "com.google.dagger", "hilt-android-compiler").version("2.42")
