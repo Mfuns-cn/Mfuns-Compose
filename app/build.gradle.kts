@@ -91,6 +91,12 @@ dependencies {
     implementation(libs.androidx.preference)
     implementation(libs.androidx.constraintlayout)
 
+    implementation(libs.androidx.compose.activity)
+    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.animation)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.lifecycle)
+
     implementation(libs.google.android.material)
 
     implementation(libs.android.volley)
@@ -104,4 +110,5 @@ dependencies {
     api(libs.tencent.tbs)
 
     implementation(libs.ilharper.str4j.android)
+
 }
