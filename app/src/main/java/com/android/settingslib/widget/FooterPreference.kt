@@ -61,8 +61,7 @@ class FooterPreference @JvmOverloads constructor(
 
     /**
      * Return the content description of footer preference.
-     */
-    /**
+     *
      * To set content description of the [FooterPreference]. This can use for talkback
      * environment if developer wants to have a customization content.
      *
@@ -80,8 +79,7 @@ class FooterPreference @JvmOverloads constructor(
 
     /**
      * Return the content description of learn more link.
-     */
-    /**
+     *
      * To set content description of the learn more text. This can use for talkback
      * environment if developer wants to have a customization content.
      *
