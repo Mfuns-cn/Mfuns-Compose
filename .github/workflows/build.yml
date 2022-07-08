@@ -8,7 +8,7 @@ on:
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
@@ -27,7 +27,7 @@ jobs:
       uses: gradle/gradle-build-action@v2
 
     - name: Build with Gradle
-      run: gradle build
+      run: gradle assembleRelease
 
     - name: Sign App APK
       uses: ilharp/sign-android-release@nightly
