@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.mfuns.webapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -9,12 +8,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission
-        android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"
-    />
-    <uses-permission
-        android:name="android.permission.ACCESS_DOWNLOAD_MANAGER"
-    />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
 
     <application
         android:name=".MfunsWebApp"
@@ -40,8 +35,7 @@
             </intent-filter>
             <meta-data
                 android:name="android.app.shortcuts"
-                android:resource="@xml/shortcuts"
-            />
+                android:resource="@xml/shortcuts" />
         </activity>
         <activity
             android:name=".view.SettingsActivity"
@@ -49,25 +43,21 @@
             android:label="@string/settings_title"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.MaterialComponents"
-        />
+            android:theme="@style/Theme.MaterialComponents" />
         <activity
             android:name=".view.PhotoViewActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
-        />
+            android:screenOrientation="portrait" />
 
         <!-- Services -->
         <service
             android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
             android:label="dexopt"
-            android:process=":dexopt"
-        />
+            android:process=":dexopt" />
 
         <uses-library
             android:name="org.apache.http.legacy"
-            android:required="false"
-        />
+            android:required="false" />
 
         <provider
             android:name=".util.ViewerProvider"
@@ -76,8 +66,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/filepaths"
-            />
+                android:resource="@xml/filepaths" />
         </provider>
     </application>
 

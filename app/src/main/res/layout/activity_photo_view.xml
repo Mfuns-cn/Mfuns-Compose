@@ -3,19 +3,19 @@
 
     <data>
 
-        <variable name="loaded" type="Boolean" />
+        <variable
+            name="loaded"
+            type="Boolean" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.github.chrisbanes.photoview.PhotoView
             android:id="@+id/photo_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-        />
+            android:layout_height="match_parent" />
 
         <fr.castorflex.android.circularprogressbar.CircularProgressBar
             android:id="@+id/loading_bar"
@@ -23,8 +23,7 @@
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:indeterminate="@{!loaded}"
-            app:cpb_stroke_width="8dp"
-        />
+            app:cpb_stroke_width="8dp" />
 
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/action_bar"
@@ -33,8 +32,7 @@
             android:layout_gravity="bottom"
             android:enabled="@{loaded}"
             app:backgroundTint="#60000000"
-            app:menu="@menu/activity_photo_view_action_menu"
-        />
+            app:menu="@menu/activity_photo_view_action_menu" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
