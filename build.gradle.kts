@@ -45,21 +45,4 @@ configure<com.diffplug.gradle.spotless.SpotlessExtension> {
         indentWithSpaces()
         endWithNewline()
     }
-
-    format("xml") {
-        target("**/*.xml")
-        prettier(
-            mapOf(
-                "@prettier/plugin-xml" to "*"
-            )
-        ).config(
-            mapOf(
-                "tabWidth" to 4,
-                "bracketSameLine" to true
-            )
-        )
-        trimTrailingWhitespace()
-        indentWithSpaces()
-        endWithNewline()
-    }
 }
