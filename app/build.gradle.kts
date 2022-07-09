@@ -46,6 +46,10 @@ android {
 
         versionCode = gitVersionCode
         versionName = gitVersionName
+
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -77,6 +81,12 @@ android {
         jvmTarget = "1.8"
     }
 
+    packagingOptions {
+        resources {
+            excludes += "META-INF/*"
+        }
+    }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.2.0-beta03"
     }
@@ -93,6 +103,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.preference)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.lifecycle)
 
     implementation(libs.androidx.compose.activity)
     implementation(libs.androidx.compose.material)

@@ -26,6 +26,7 @@ dependencyResolutionManagement {
             library("androidx-appcompat", "androidx.appcompat", "appcompat").version("1.4.2")
             library("androidx-preference", "androidx.preference", "preference-ktx").version("1.2.0")
             library("androidx-constraintlayout", "androidx.constraintlayout", "constraintlayout").version("2.1.4")
+            library("androidx-lifecycle", "androidx.lifecycle", "lifecycle-runtime-ktx").version("2.3.1")
 
             library("androidx-compose-activity", "androidx.activity", "activity-compose").version("1.4.0")
             library("androidx-compose-material", "androidx.compose.material", "material").version("1.1.1")
