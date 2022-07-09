@@ -116,6 +116,8 @@ dependencies {
 
     implementation(libs.android.volley)
 
+    implementation(libs.okhttp.okhttp)
+
     implementation(libs.dagger.hilt.android)
     kapt(libs.dagger.hilt.compiler)
 

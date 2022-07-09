@@ -13,6 +13,8 @@ pluginManagement {
 dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
+            version("okhttp", "4.10.0")
+
             library("android-gradle", "com.android.tools.build", "gradle").version("7.2.1")
             library("kotlin-gradle", "org.jetbrains.kotlin", "kotlin-gradle-plugin").version("1.6.21")
             library("spotless", "com.diffplug.spotless", "spotless-plugin-gradle").version("6.7.2")
@@ -38,6 +40,8 @@ dependencyResolutionManagement {
             library("google-android-material", "com.google.android.material", "material").version("1.4.0")
 
             library("android-volley", "com.android.volley", "volley").version("1.2.1")
+
+            library("okhttp-okhttp", "com.squareup.okhttp3", "okhttp").versionRef("okhttp")
 
             library("github-chrisbanes-photoview", "com.github.chrisbanes", "PhotoView").version("2.3.0")
             library("github-castorflex-smoothprogressbar", "com.github.castorflex.smoothprogressbar", "library-circular").version("1.3.0")
