@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.preference.PreferenceManager
 import cn.mfuns.webapp.R
+import cn.mfuns.webapp.util.MfunsConfig
 import cn.mfuns.webapp.view.MainActivity
 import com.tencent.smtt.export.external.TbsCoreSettings
 import com.tencent.smtt.sdk.CookieManager
@@ -27,7 +28,8 @@ import javax.inject.Inject
 
 @ActivityScoped
 class MfunsWebViewContainer @Inject constructor(
-    private val activity: MainActivity
+    private val activity: MainActivity,
+    private val mfunsConfig: MfunsConfig
 ) {
     private var webView: WebView? = null
 
@@ -131,7 +133,7 @@ class MfunsWebViewContainer @Inject constructor(
 
             webChromeClient = MfunsWebChromeClient(activity)
 
-            loadUrl(activity.getString(R.string.app_url))
+            loadUrl(mfunsConfig.ap)
         }
     }
 
@@ -157,6 +159,7 @@ class MfunsWebViewContainer @Inject constructor(
 class MfunsWebViewContainerModule {
     @Provides
     fun provideMfunsWebViewContainer(
-        @ActivityContext context: Context
-    ) = MfunsWebViewContainer(context as MainActivity)
+        @ActivityContext context: Context,
+        mfunsConfig: MfunsConfig
+    ) = MfunsWebViewContainer(context as MainActivity, mfunsConfig)
 }

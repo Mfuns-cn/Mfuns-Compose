@@ -16,6 +16,19 @@ import javax.inject.Singleton
 class MfunsConfig @Inject constructor(
     application: MfunsWebApp
 ) {
+    //region Access Point
+
+    val ap: String
+
+    init {
+        ap = PreferenceManager.getDefaultSharedPreferences(application).getString(
+            application.getString(R.string.settings_connection_ap_key),
+            application.getString(R.string.settings_connection_ap_values_default)
+        )!!
+    }
+
+    //endregion
+
     //region Update Channel
 
     val updateChannel: String

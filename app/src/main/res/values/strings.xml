@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
     <string name="app_name">喵御宅</string>
-    <string name="app_url">https://www.mfuns.cn</string>
 
     <!-- Common -->
     <string name="ok">好</string>
