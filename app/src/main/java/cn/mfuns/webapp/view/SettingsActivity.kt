@@ -52,6 +52,21 @@ class SettingsActivity : AppCompatActivity() {
                 }
 
             // Version
+            val preferenceUpdateChannel = findPreference<ListPreference>(getString(R.string.settings_update_channel_key))
+            preferenceUpdateChannel!!.summaryProvider =
+                Preference.SummaryProvider<ListPreference> {
+                    // Get description text through corresponding index
+                    resources.getStringArray(R.array.settings_update_channel_list)[
+                        resources.getStringArray(R.array.settings_update_channel_values).indexOf(
+                            // Get current value of settings_update_channel
+                            PreferenceManager.getDefaultSharedPreferences(requireContext()).getString(
+                                getString(R.string.settings_update_channel_key),
+                                getString(R.string.settings_update_channel_values_default)
+                            )
+                        )
+                    ]
+                }
+
             val preferenceUpdate = findPreference<Preference>("settings_update")
             preferenceUpdate!!.onPreferenceClickListener =
                 Preference.OnPreferenceClickListener {

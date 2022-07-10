@@ -66,6 +66,20 @@
 
     <!-- Settings - About -->
     <string name="settings_about">关于</string>
+
+    <string name="settings_update_channel_key">settings_update_channel</string>
+    <string name="settings_update_channel">更新通道</string>
+    <string-array name="settings_update_channel_list">
+        <item>@string/settings_update_channel_list_stable</item>
+    </string-array>
+    <string-array name="settings_update_channel_values">
+        <item>@string/settings_update_channel_values_stable</item>
+    </string-array>
+    <string name="settings_update_channel_list_default">@string/settings_update_channel_list_stable</string>
+    <string name="settings_update_channel_values_default">@string/settings_update_channel_values_stable</string>
+    <string name="settings_update_channel_list_stable">稳定（droid-stable）</string>
+    <string name="settings_update_channel_values_stable">droid-stable</string>
+
     <string name="settings_update">检查更新</string>
     <string name="settings_group">反馈交流群</string>
     <string name="settings_group_summary">825962575（点击加入）</string>
