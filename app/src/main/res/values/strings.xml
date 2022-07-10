@@ -67,6 +67,7 @@
     <!-- Settings - About -->
     <string name="settings_about">关于</string>
 
+    <string name="settings_update_url">https://app.mfuns.cn/releases/%s/latest.json</string>
     <string name="settings_update_channel_key">settings_update_channel</string>
     <string name="settings_update_channel">更新通道</string>
     <string-array name="settings_update_channel_list">

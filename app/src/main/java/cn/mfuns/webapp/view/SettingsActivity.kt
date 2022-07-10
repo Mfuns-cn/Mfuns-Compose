@@ -14,10 +14,14 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import cn.mfuns.webapp.R
+import cn.mfuns.webapp.util.MfunsConfig
 import com.ilharper.str4j.android.distrib.StrUpdate
 import com.ilharper.str4j.android.distrib.strUpdate
 import com.tencent.smtt.sdk.QbSdk
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +35,12 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
+    @AndroidEntryPoint
     class SettingsFragment : PreferenceFragmentCompat() {
+
+        @Inject
+        lateinit var mfunsConfig: MfunsConfig
+
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.preferences, rootKey)
 
@@ -73,7 +82,7 @@ class SettingsActivity : AppCompatActivity() {
                     StrUpdate.default = (
                         StrUpdate.default ?: (
                             strUpdate {
-                                useSimpleChecker("https://app.mfuns.cn/releases")
+                                useSimpleChecker(mfunsConfig.updateUrl)
                             }
                             )
                         ).check(requireActivity(), true)

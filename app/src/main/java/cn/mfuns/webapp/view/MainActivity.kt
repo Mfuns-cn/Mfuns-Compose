@@ -18,6 +18,7 @@ import androidx.preference.PreferenceManager
 import cn.mfuns.webapp.R
 import cn.mfuns.webapp.databinding.ActivityMainBinding
 import cn.mfuns.webapp.util.AndroidUtil.Companion.setFullscreen
+import cn.mfuns.webapp.util.MfunsConfig
 import cn.mfuns.webapp.webview.MfunsWebViewContainer
 import com.ilharper.str4j.android.distrib.StrUpdate
 import com.ilharper.str4j.android.distrib.strUpdate
@@ -28,6 +29,9 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var webViewContainer: MfunsWebViewContainer
+
+    @Inject
+    lateinit var mfunsConfig: MfunsConfig
 
     // region File Chooser
 
@@ -82,7 +86,7 @@ class MainActivity : AppCompatActivity() {
             StrUpdate.default = (
                 StrUpdate.default ?: (
                     strUpdate {
-                        useSimpleChecker("https://app.mfuns.cn/releases")
+                        useSimpleChecker(mfunsConfig.updateUrl)
                     }
                     )
                 ).check(this)
