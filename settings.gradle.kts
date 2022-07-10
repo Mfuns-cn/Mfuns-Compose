@@ -13,6 +13,7 @@ pluginManagement {
 dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
+            version("dagger", "2.42")
             version("okhttp", "4.10.0")
 
             library("android-gradle", "com.android.tools.build", "gradle").version("7.2.1")
@@ -21,9 +22,9 @@ dependencyResolutionManagement {
 
             library("android-desugar", "com.android.tools", "desugar_jdk_libs").version("1.1.5")
 
-            library("dagger-hilt-gradle", "com.google.dagger", "hilt-android-gradle-plugin").version("2.42")
-            library("dagger-hilt-android", "com.google.dagger", "hilt-android").version("2.42")
-            library("dagger-hilt-compiler", "com.google.dagger", "hilt-android-compiler").version("2.42")
+            library("dagger-hilt-gradle", "com.google.dagger", "hilt-android-gradle-plugin").versionRef("dagger")
+            library("dagger-hilt-android", "com.google.dagger", "hilt-android").versionRef("dagger")
+            library("dagger-hilt-compiler", "com.google.dagger", "hilt-android-compiler").versionRef("dagger")
 
             library("androidx-appcompat", "androidx.appcompat", "appcompat").version("1.4.2")
             library("androidx-preference", "androidx.preference", "preference-ktx").version("1.2.0")
