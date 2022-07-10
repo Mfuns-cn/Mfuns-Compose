@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
                         useSimpleChecker("https://app.mfuns.cn/releases")
                     }
                     )
-                ).check()
+                ).check(this)
         }, 1000)
     }
 

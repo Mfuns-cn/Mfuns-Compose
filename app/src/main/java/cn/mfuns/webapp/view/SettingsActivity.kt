@@ -76,7 +76,7 @@ class SettingsActivity : AppCompatActivity() {
                                 useSimpleChecker("https://app.mfuns.cn/releases")
                             }
                             )
-                        ).check(manual = true)
+                        ).check(requireActivity(), true)
                     true
                 }
 
