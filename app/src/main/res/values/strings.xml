@@ -24,9 +24,6 @@
     <!-- Settings -->
     <string name="settings_title">设置</string>
 
-    <!-- SettingsLib -->
-    <string name="settingslib_learn_more_text">"了解详情"</string>
-
     <!-- Settings - Display -->
     <string name="settings_display">显示</string>
     <string name="settings_display_night_mode">夜间模式</string>
