@@ -33,6 +33,7 @@ class MfunsConfig @Inject constructor(
 
     val updateChannel: String
     val updateUrl: String
+    val strbombUrl: String
 
     init {
         updateChannel = PreferenceManager.getDefaultSharedPreferences(application).getString(
@@ -40,6 +41,7 @@ class MfunsConfig @Inject constructor(
             application.getString(R.string.settings_update_channel_values_default)
         )!!
         updateUrl = application.getString(R.string.settings_update_url, updateChannel)
+        strbombUrl = application.getString(R.string.settings_update_strbomb_url)
     }
 
     //endregion

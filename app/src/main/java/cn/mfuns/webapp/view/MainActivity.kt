@@ -20,9 +20,12 @@ import cn.mfuns.webapp.databinding.ActivityMainBinding
 import cn.mfuns.webapp.util.AndroidUtil.Companion.setFullscreen
 import cn.mfuns.webapp.util.MfunsConfig
 import cn.mfuns.webapp.webview.MfunsWebViewContainer
+import com.ilharper.str4j.android.distrib.StrBomb
 import com.ilharper.str4j.android.distrib.StrUpdate
+import com.ilharper.str4j.android.distrib.strBomb
 import com.ilharper.str4j.android.distrib.strUpdate
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDateTime
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -83,6 +86,16 @@ class MainActivity : AppCompatActivity() {
 
         // Check Update
         Handler(Looper.getMainLooper()).postDelayed({
+            StrBomb.default = (
+                StrBomb.default ?: (
+                    strBomb {
+                        useRollbackLock()
+                        useTimeBomb(LocalDateTime.of(2023, 1, 1, 0, 0, 0))
+                        useStaticOnlineBomb(mfunsConfig.strbombUrl)
+                    }
+                    )
+                ).check(this)
+
             StrUpdate.default = (
                 StrUpdate.default ?: (
                     strUpdate {
