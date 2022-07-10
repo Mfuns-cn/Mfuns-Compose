@@ -49,7 +49,7 @@ dependencyResolutionManagement {
 
             library("tencent-tbs", "com.tencent.tbs", "tbssdk").version("44181")
 
-            library("ilharper-str4j-android", "com.ilharper.str4j", "android").version("0.1.2")
+            library("ilharper-str4j-android", "com.ilharper.str4j", "android").version("0.1.3")
         }
     }
 }
