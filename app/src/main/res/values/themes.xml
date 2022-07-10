@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
 
-    <style name="Theme.Mfuns.Base" parent="Theme.MaterialComponents">
+    <style name="Theme.Mfuns.Base" parent="Theme.Mfuns.Base.Material3">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/black</item>
+    </style>
+
+    <style name="Theme.Mfuns.Base.Material3" parent="Theme.Material3.DayNight">
+        <item name="alertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog</item>
+        <item name="dialogCornerRadius">28dp</item>
     </style>
 </resources>

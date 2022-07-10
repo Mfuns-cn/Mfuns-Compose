@@ -38,11 +38,11 @@ val gitVersionCode = getVersionCode()
 val gitVersionName = getVersionName()
 
 android {
-    compileSdk = 31
+    compileSdk = 33
 
     defaultConfig {
         minSdk = 25
-        targetSdk = 25
+        targetSdk = 33
 
         versionCode = gitVersionCode
         versionName = gitVersionName

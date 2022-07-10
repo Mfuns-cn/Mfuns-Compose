@@ -38,7 +38,7 @@ dependencyResolutionManagement {
             library("androidx-compose-lifecycle", "androidx.lifecycle", "lifecycle-viewmodel-compose").version("2.4.1")
             library("androidx-compose-navigation", "androidx.navigation", "navigation-compose").version("2.5.0")
 
-            library("google-android-material", "com.google.android.material", "material").version("1.4.0")
+            library("google-android-material", "com.google.android.material", "material").version("1.6.1")
 
             library("android-volley", "com.android.volley", "volley").version("1.2.1")
 
