@@ -24,6 +24,24 @@
     <!-- Settings -->
     <string name="settings_title">设置</string>
 
+    <!-- Settings - Connection -->
+    <string name="settings_connection_key">settings_connection</string>
+    <string name="settings_connection">连接</string>
+    <string name="settings_connection_ap_key">settings_connection_ap</string>
+    <string name="settings_connection_ap">接入点</string>
+    <string-array name="settings_connection_ap_list">
+        <item>www.mfuns.cn（源站）</item>
+        <item>www.mfuns.fun（备胎站-香港CN2）</item>
+        <item>us.mfuns.fun（备胎站-美国）</item>
+    </string-array>
+    <string-array name="settings_connection_ap_values">
+        <item>https://www.mfuns.cn</item>
+        <item>https://www.mfuns.fun</item>
+        <item>https://us.mfuns.fun</item>
+    </string-array>
+    <string name="settings_connection_ap_list_default">www.mfuns.fun（备胎站-香港CN2）</string>
+    <string name="settings_connection_ap_values_default">https://www.mfuns.fun</string>
+
     <!-- Settings - Display -->
     <string name="settings_display">显示</string>
     <string name="settings_display_night_mode">夜间模式</string>
