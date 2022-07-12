@@ -1,32 +1,35 @@
-# Mfuns-WebApp
+# Mfuns-Compose
 
-## 先决条件
+欢迎来到 Mfuns-Compose 仓库。这里存放了 Mfuns 的 WebApp、Android 和 PC 客户端的源代码。
 
-在 Android Studio 中安装以下版本的 SDK 和 build tools：
+## 项目结构
+
+- [`common`](https://github.com/Mfuns-cn/Mfuns-Compose/tree/master/common)：Mfuns-Compose 的基础项目，存放了一些基础逻辑和公共组合。
+
+- [`android`](https://github.com/Mfuns-cn/Mfuns-Compose/tree/master/android)：Mfuns 的 Android 客户端。
+
+- [`webapp`](https://github.com/Mfuns-cn/Mfuns-Compose/tree/master/webapp)：Mfuns 的 WebApp 客户端。
+
+- [`desktop`](https://github.com/Mfuns-cn/Mfuns-Compose/tree/master/desktop)：Mfuns 的 PC 客户端。
+
+## 贡献
+
+### 先决条件
+
+安装以下版本的 Android SDK：
 
 ```groovy
 android {
-    compileSdkVersion 31
-    buildToolsVersion "30.0.2"
+    compileSdk = 33
 }
 ```
 
-然后，创建 `local.properties` 并指定 `sdk.dir`。
+然后，在项目目录下创建 `local.properties` 文件并指定 `sdk.dir`。
 
 ```properties
 # local.properties
 sdk.dir=/path/to/your/android-sdk
 ```
-
-## 起步
-
-项目可直接构建并运行。
-
-## 须知
-
-### 仓库
-
-Mfuns-Android 完善后 Mfuns-WebApp 会逐渐弃用，因此 Mfuns-Android 和 Mfuns-WebApp 存放在两个不同的仓库。
 
 ### 格式化
 
@@ -40,7 +43,7 @@ Mfuns-Android 完善后 Mfuns-WebApp 会逐渐弃用，因此 Mfuns-Android 和 
 
 ### 版本控制
 
-版本控制遵循 [SemVer](https://semver.org/lang/zh-CN/)。
+版本控制遵循 [SemVer](https://semver.org/lang/zh-CN/)。所有项目共享相同的版本号。
 
 - 修订号 Z（`x.y.Z`）在发生了向下兼容的修正时递增。
 
@@ -50,16 +53,8 @@ Mfuns-Android 完善后 Mfuns-WebApp 会逐渐弃用，因此 Mfuns-Android 和 
 
 在后端 API 稳定的情况下，假定用户使用最新的正式版本。不需要对历史版本进行维护。
 
-### 分支控制
-
-`v0.0.x` 允许直接推送到 `master`。
-
-从 `v0.1.0` 开始，不允许直接推送到 `master`。若要添加新的功能，请先创建对应的 `author/feature` 分支，然后创建合并请求。
-
-若确实要在继续维护当前版本的情况下启动新版本的开发流程，使用 `next` 分支。
-
 ## 许可
 
-Mfuns-WebApp 使用 AGPL 协议授权。使用本产品或其源代码时，你不能将其闭源，改变许可协议或进行商业销售。
+Mfuns-Compose 使用 AGPL 协议授权。使用本产品或其源代码时，你不能将其闭源，改变许可协议或进行商业销售。
 
 如果你发现了任何违规行为，请联系我们。
