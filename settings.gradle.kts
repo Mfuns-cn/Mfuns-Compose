@@ -47,7 +47,7 @@ dependencyResolutionManagement {
             library("github-chrisbanes-photoview", "com.github.chrisbanes", "PhotoView").version("2.3.0")
             library("github-castorflex-smoothprogressbar", "com.github.castorflex.smoothprogressbar", "library-circular").version("1.3.0")
 
-            library("tencent-tbs", "com.tencent.tbs", "tbssdk").version("44181")
+            library("tencent-tbs", "com.tencent.tbs", "tbssdk").version("54002-beta")
 
             library("ilharper-str4j-android", "com.ilharper.str4j", "android").version("0.1.5")
         }
