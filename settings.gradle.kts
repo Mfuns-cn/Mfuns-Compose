@@ -1,6 +1,6 @@
 rootProject.name = "Mfuns-WebApp"
 
-include(":app")
+include(":webapp")
 
 pluginManagement {
     repositories {

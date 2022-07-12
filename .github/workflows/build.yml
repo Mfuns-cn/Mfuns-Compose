@@ -31,9 +31,9 @@ jobs:
 
     - name: Sign App APK
       uses: ilharp/sign-android-release@v1
-      id: sign_app
+      id: sign_webapp
       with:
-        releaseDir: app/build/outputs/apk/release
+        releaseDir: webapp/build/outputs/apk/release
         signingKey: ${{ secrets.ANDROID_SIGNING_KEY }}
         keyAlias: mfuns-rev0
         keyStorePassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
@@ -43,4 +43,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: mfuns-webapp-${{ github.sha }}
-        path: ${{steps.sign_app.outputs.signedFile}}
+        path: ${{steps.sign_webapp.outputs.signedFile}}
