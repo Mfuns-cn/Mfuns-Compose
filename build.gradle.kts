@@ -1,17 +1,3 @@
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath(libs.android.gradle)
-        classpath(libs.kotlin.gradle)
-        classpath(libs.spotless)
-        classpath(libs.dagger.hilt.gradle)
-    }
-}
-
 allprojects {
     repositories {
         google()
@@ -21,7 +7,10 @@ allprojects {
     }
 }
 
-apply(plugin = "com.diffplug.spotless")
+plugins {
+    id("com.diffplug.spotless")
+}
+
 configure<com.diffplug.gradle.spotless.SpotlessExtension> {
     format("misc") {
         target("**/*.md", "**/*.editorconfig", "**/*.gitignore", "**/*.gitattributes")

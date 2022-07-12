@@ -3,10 +3,29 @@ rootProject.name = "Mfuns-WebApp"
 include(":webapp")
 
 pluginManagement {
+    val versions = mapOf(
+        "agp" to "7.2.1",
+        "kotlin" to "1.6.21",
+        "dagger" to "2.42",
+        "spotless" to "6.7.2"
+    )
+
     repositories {
         google()
         mavenCentral()
         gradlePluginPortal()
+    }
+
+    plugins {
+        id("com.android.application").version(versions["agp"])
+        id("com.android.library").version(versions["agp"])
+
+        kotlin("android").version(versions["kotlin"])
+        kotlin("kapt").version(versions["kotlin"])
+
+        id("com.google.dagger.hilt.android").version(versions["dagger"])
+
+        id("com.diffplug.spotless").version(versions["spotless"])
     }
 }
 
@@ -16,13 +35,8 @@ dependencyResolutionManagement {
             version("dagger", "2.42")
             version("okhttp", "4.10.0")
 
-            library("android-gradle", "com.android.tools.build", "gradle").version("7.2.1")
-            library("kotlin-gradle", "org.jetbrains.kotlin", "kotlin-gradle-plugin").version("1.6.21")
-            library("spotless", "com.diffplug.spotless", "spotless-plugin-gradle").version("6.7.2")
-
             library("android-desugar", "com.android.tools", "desugar_jdk_libs").version("1.1.5")
 
-            library("dagger-hilt-gradle", "com.google.dagger", "hilt-android-gradle-plugin").versionRef("dagger")
             library("dagger-hilt-android", "com.google.dagger", "hilt-android").versionRef("dagger")
             library("dagger-hilt-compiler", "com.google.dagger", "hilt-android-compiler").versionRef("dagger")
 
