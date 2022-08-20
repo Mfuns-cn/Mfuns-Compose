@@ -6,6 +6,7 @@ pluginManagement {
     val versions = mapOf(
         "agp" to "7.2.1",
         "kotlin" to "1.6.21",
+        "compose" to "1.1.0",
         "dagger" to "2.42",
         "spotless" to "6.7.2"
     )
@@ -14,6 +15,7 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 
     plugins {
