@@ -4,7 +4,7 @@ include(":webapp")
 
 pluginManagement {
     val versions = mapOf(
-        "agp" to "7.2.1",
+        "agp" to "7.2.2",
         "kotlin" to "1.6.21",
         "compose" to "1.1.0",
         "dagger" to "2.42",
