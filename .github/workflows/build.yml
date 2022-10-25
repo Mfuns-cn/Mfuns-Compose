@@ -30,7 +30,7 @@ jobs:
       run: gradle build
 
     - name: Sign App APK
-      uses: ilharp/sign-android-release@v1
+      uses: ilharp/sign-android-release@nightly
       id: sign_webapp
       with:
         releaseDir: webapp/build/outputs/apk/release
