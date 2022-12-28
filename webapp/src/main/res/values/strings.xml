@@ -29,12 +29,10 @@
     <string name="settings_connection_ap_key">settings_connection_ap</string>
     <string name="settings_connection_ap">接入点</string>
     <string-array name="settings_connection_ap_list">
-        <item>www.mfuns.cn</item>
         <item>www.mfuns.fun</item>
         <item>www.mfuns.xyz</item>
     </string-array>
     <string-array name="settings_connection_ap_values">
-        <item>https://www.mfuns.cn</item>
         <item>https://www.mfuns.fun</item>
         <item>https://www.mfuns.xyz</item>
     </string-array>
