@@ -41,6 +41,7 @@
 
     <!-- Settings - Display -->
     <string name="settings_display">显示</string>
+    <string name="settings_display_night_mode_key">settings_display_night_mode</string>
     <string name="settings_display_night_mode">夜间模式</string>
 
     <!-- Settings - WebView -->

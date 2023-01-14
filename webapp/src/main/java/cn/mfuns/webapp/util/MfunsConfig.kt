@@ -45,6 +45,17 @@ class MfunsConfig @Inject constructor(
     }
 
     //endregion
+
+    //region Display
+
+    val dayMode: Boolean
+
+    init {
+        dayMode = !PreferenceManager.getDefaultSharedPreferences(application)
+            .getBoolean("settings_display_night_mode", false)
+    }
+
+    //endregion
 }
 
 @Module
