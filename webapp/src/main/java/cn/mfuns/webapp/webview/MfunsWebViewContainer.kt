@@ -35,7 +35,10 @@ class MfunsWebViewContainer @Inject constructor(
 
     @SuppressLint("SetJavaScriptEnabled")
     fun initialize(completed: (() -> Unit)) {
-        if (webView != null) completed()
+        if (webView != null) {
+            completed()
+            return
+        }
 
         // Initialize dex2oat
         val map = HashMap<String?, Any?>()
