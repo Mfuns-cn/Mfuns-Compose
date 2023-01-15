@@ -13,6 +13,10 @@
     <string name="tbs_initialize_failed">TBS 启动失败</string>
     <string name="tbs_initialize_failed_message">TBS 启动失败。\n这种情况较为少见，请联系开发者获取支持。</string>
 
+    <!-- Bootstrap Failed -->
+    <string name="bootstrap_failed">引导失败</string>
+    <string name="bootstrap_failed_message">引导失败。\n请更换至更优质的网络环境后重新启动应用。</string>
+
     <!-- File Viewer -->
     <string name="viewer_open">打开</string>
     <string name="viewer_download">下载</string>
@@ -26,6 +30,7 @@
     <!-- Settings - Connection -->
     <string name="settings_connection_key">settings_connection</string>
     <string name="settings_connection">连接</string>
+    <string name="settings_connection_bootstrap">https://app.mfuns.com.cn/bootstrap.json</string>
     <string name="settings_connection_ap_key">settings_connection_ap</string>
     <string name="settings_connection_ap">接入点</string>
     <string-array name="settings_connection_ap_list">

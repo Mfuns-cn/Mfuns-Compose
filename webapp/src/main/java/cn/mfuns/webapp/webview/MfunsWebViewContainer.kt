@@ -9,8 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import cn.mfuns.webapp.R
+import cn.mfuns.webapp.util.DownloadRequest
 import cn.mfuns.webapp.util.MfunsConfig
 import cn.mfuns.webapp.view.MainActivity
+import com.android.volley.toolbox.Volley
 import com.tencent.smtt.export.external.TbsCoreSettings
 import com.tencent.smtt.sdk.CookieManager
 import com.tencent.smtt.sdk.QbSdk
@@ -23,6 +25,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.scopes.ActivityScoped
+import org.json.JSONObject
+import java.nio.charset.StandardCharsets
 import javax.inject.Inject
 
 @ActivityScoped
@@ -132,7 +136,19 @@ class MfunsWebViewContainer @Inject constructor(
 
             webChromeClient = MfunsWebChromeClient(activity)
 
-            loadUrl(mfunsConfig.ap)
+            Volley.newRequestQueue(activity.applicationContext).add(
+                DownloadRequest(resources.getString(R.string.settings_connection_bootstrap), { response ->
+                    loadUrl(JSONObject(response.toString(StandardCharsets.UTF_8)).getString("url"))
+                }) {
+                    AlertDialog.Builder(activity).apply {
+                        setTitle(R.string.bootstrap_failed)
+                        setMessage(R.string.bootstrap_failed_message)
+                        setPositiveButton(R.string.ok) { _, _ -> Process.killProcess(Process.myPid()) }
+                        setCancelable(false)
+                        show()
+                    }
+                }
+            )
         }
     }
 
