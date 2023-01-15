@@ -16,8 +16,8 @@ class MfunsWebViewClient(private val activity: MainActivity) : WebViewClient() {
     companion object {
         private val protocolWhitelist = listOf(
             "mqqopensdkapi", // App下载 - 加群链接
-            "mqqwpa", // 客服
-            "tbopen" // 广告 - 淘宝
+            "mqqwpa" // 客服
+            // "tbopen" // 广告 - 淘宝
         )
     }
 
