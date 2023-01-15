@@ -31,18 +31,6 @@
     <string name="settings_connection_key">settings_connection</string>
     <string name="settings_connection">连接</string>
     <string name="settings_connection_bootstrap">https://app.mfuns.com.cn/bootstrap.json</string>
-    <string name="settings_connection_ap_key">settings_connection_ap</string>
-    <string name="settings_connection_ap">接入点</string>
-    <string-array name="settings_connection_ap_list">
-        <item>www.mfuns.fun</item>
-        <item>www.mfuns.xyz</item>
-    </string-array>
-    <string-array name="settings_connection_ap_values">
-        <item>https://www.mfuns.fun</item>
-        <item>https://www.mfuns.xyz</item>
-    </string-array>
-    <string name="settings_connection_ap_list_default">www.mfuns.xyz</string>
-    <string name="settings_connection_ap_values_default">https://www.mfuns.xyz</string>
 
     <!-- Settings - Display -->
     <string name="settings_display">显示</string>

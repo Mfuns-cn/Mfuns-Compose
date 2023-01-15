@@ -44,22 +44,6 @@ class SettingsActivity : AppCompatActivity() {
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.preferences, rootKey)
 
-            // Connection
-            val preferenceConnectionAp = findPreference<ListPreference>(getString(R.string.settings_connection_ap_key))
-            preferenceConnectionAp!!.summaryProvider =
-                Preference.SummaryProvider<ListPreference> {
-                    // Get description text through corresponding index
-                    resources.getStringArray(R.array.settings_connection_ap_list)[
-                        resources.getStringArray(R.array.settings_connection_ap_values).indexOf(
-                            // Get current value of settings_connection_ap
-                            PreferenceManager.getDefaultSharedPreferences(requireContext()).getString(
-                                getString(R.string.settings_connection_ap_key),
-                                getString(R.string.settings_connection_ap_values_default)
-                            )
-                        )
-                    ]
-                }
-
             // Version
             val preferenceUpdateChannel = findPreference<ListPreference>(getString(R.string.settings_update_channel_key))
             preferenceUpdateChannel!!.summaryProvider =
