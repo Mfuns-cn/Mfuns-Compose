@@ -38,6 +38,8 @@ val gitVersionCode = getVersionCode()
 val gitVersionName = getVersionName()
 
 android {
+    namespace = "cn.mfuns.webapp"
+
     compileSdk = 33
 
     defaultConfig {
