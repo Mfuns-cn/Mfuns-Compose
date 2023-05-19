@@ -83,7 +83,7 @@ android {
         jvmTarget = "1.8"
     }
 
-    packagingOptions {
+    packaging {
         resources {
             excludes += "META-INF/*"
         }
