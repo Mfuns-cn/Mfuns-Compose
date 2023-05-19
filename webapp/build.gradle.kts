@@ -1,10 +1,10 @@
 import java.io.ByteArrayOutputStream
 
 plugins {
-    id("com.android.application")
-    kotlin("android")
-    kotlin("kapt")
-    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.agp.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.dagger.hilt)
 }
 
 val getVersionCode = {

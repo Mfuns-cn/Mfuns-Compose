@@ -8,7 +8,7 @@ allprojects {
 }
 
 plugins {
-    id("com.diffplug.spotless")
+    alias(libs.plugins.spotless)
 }
 
 configure<com.diffplug.gradle.spotless.SpotlessExtension> {
