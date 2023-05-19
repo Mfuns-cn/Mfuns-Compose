@@ -1,4 +1,4 @@
-rootProject.name = "Mfuns-WebApp"
+rootProject.name = "Mfuns-Compose"
 
 include(":webapp")
 
