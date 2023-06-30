@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
                 StrBomb.default ?: (
                     strBomb {
                         useRollbackLock()
-                        useTimeBomb(LocalDateTime.of(2023, 8, 1, 0, 0, 0))
+                        useTimeBomb(LocalDateTime.of(2023, 7, 24, 0, 0, 0))
                         useStaticOnlineBomb(mfunsConfig.strbombUrl)
                     }
                     )
