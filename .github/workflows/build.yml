@@ -12,25 +12,25 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
           submodules: recursive
           fetch-depth: 0
 
     - name: Set-up JDK 17
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
         java-version: '17'
 
     - name: Setup Gradle
-      uses: gradle/gradle-build-action@v2
+      uses: gradle/actions/setup-gradle@v4
 
     - name: Build with Gradle
       run: gradle build
 
     - name: Sign App APK
-      uses: ilharp/sign-android-release@nightly
+      uses: ilharp/sign-android-release@v2
       id: sign_webapp
       with:
         releaseDir: webapp/build/outputs/apk/release
@@ -40,7 +40,7 @@ jobs:
         keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
 
     - name: Push Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: mfuns-webapp-${{ github.sha }}
         path: ${{steps.sign_webapp.outputs.signedFile}}
